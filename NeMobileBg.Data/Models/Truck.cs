@@ -2,5 +2,5 @@
 
 public class Truck : Vehicle
 {
-    public string Axles { get; set; } = default!;
+    public int Axles { get; set; } = default!;
 }

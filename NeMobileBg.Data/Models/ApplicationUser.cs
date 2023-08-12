@@ -5,6 +5,10 @@ namespace NeMobileBg.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser() 
+        {
+            base.Id = Guid.NewGuid().ToString(); 
+        }
         public string FirstName { get; set; } = default!;
 
         public string LastName { get; set; } = default!;

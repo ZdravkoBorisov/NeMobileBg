@@ -17,7 +17,7 @@ public class Vehicle
 
     public string Description { get; set; } = default!;
 
-    public byte[] ImageUrl { get; set; } = default!;
+    public byte[]? ImageUrl { get; set; } = default!;
 
     public string Color { get; set; } = default!;
 
@@ -25,7 +25,7 @@ public class Vehicle
 
     public int Mileage { get; set; }
 
-    public string? EuroStandart { get; set; }
+    public string? EuroStandard { get; set; }
 
     public string Gearbox { get; set; } = default!;
 
