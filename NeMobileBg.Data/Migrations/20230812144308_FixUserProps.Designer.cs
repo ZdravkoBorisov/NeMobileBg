@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeMobileBg.Data;
 
@@ -11,9 +12,10 @@ using NeMobileBg.Data;
 namespace NeMobileBg.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230812144308_FixUserProps")]
+    partial class FixUserProps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,6 +138,28 @@ namespace NeMobileBg.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "40c03149-66ea-40bb-aa7e-7a21c50ad877",
+                            RoleId = "0c3fe04b-652f-4fdb-aa6d-a5fb6ce4c554"
+                        },
+                        new
+                        {
+                            UserId = "3035f543-8ce5-457d-8073-c086473cf18a",
+                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
+                        },
+                        new
+                        {
+                            UserId = "296290bd-402b-4dc7-922f-3586f8d0c882",
+                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
+                        },
+                        new
+                        {
+                            UserId = "037f69eb-1390-435f-a085-e738fb60e93e",
+                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -457,61 +481,6 @@ namespace NeMobileBg.Data.Migrations
                     b.ToTable("Trucks");
                 });
 
-            modelBuilder.Entity("NeMobileBg.Data.Models.Tyre", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("DOT")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Inches")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Price")
-                        .HasPrecision(4, 2)
-                        .HasColumnType("decimal(4,2)");
-
-                    b.Property<string>("Season")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpeedIndex")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TyreIndex")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Tyres");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -585,15 +554,6 @@ namespace NeMobileBg.Data.Migrations
                 {
                     b.HasOne("NeMobileBg.Data.Models.ApplicationUser", "Owner")
                         .WithMany("Trucks")
-                        .HasForeignKey("OwnerId");
-
-                    b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("NeMobileBg.Data.Models.Tyre", b =>
-                {
-                    b.HasOne("NeMobileBg.Data.Models.ApplicationUser", "Owner")
-                        .WithMany()
                         .HasForeignKey("OwnerId");
 
                     b.Navigation("Owner");
