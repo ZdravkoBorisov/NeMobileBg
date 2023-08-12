@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NeMobileBg.Data;
 using NeMobileBg.Data.Models;
 using NeMobileBg.Data.Repository;
+using NeMobileBg.Services;
 using NeMobileBg.Services.Cars;
 using NeMobileBg.Services.Contracts;
 using NeMobileBg.Services.Motorcycles;
@@ -24,6 +25,7 @@ builder.Services.AddScoped<ITyresService, TyresService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IHomePageService, HomePageService>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {

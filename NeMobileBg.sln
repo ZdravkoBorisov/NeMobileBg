@@ -5,13 +5,13 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeMobileBg.Web", "NeMobileBg.Web\NeMobileBg.Web.csproj", "{8536283C-5B14-4F17-BF0F-542055F24513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeMobileBg.Data", "NeMobileBg.Data\NeMobileBg.Data.csproj", "{EA2EE190-B606-4886-AEAD-69CE526AD8F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeMobileBg.Data", "NeMobileBg.Data\NeMobileBg.Data.csproj", "{EA2EE190-B606-4886-AEAD-69CE526AD8F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeMobileBg.Services", "NeMobileBg.Services\NeMobileBg.Services.csproj", "{100A90FC-ED0F-41A2-9F4A-49FA2552DDB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeMobileBg.Services", "NeMobileBg.Services\NeMobileBg.Services.csproj", "{100A90FC-ED0F-41A2-9F4A-49FA2552DDB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeMobileBg.Tests", "NeMobileBg.Tests\NeMobileBg.Tests.csproj", "{AA607F87-862A-46C7-8B10-4A487A754544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeMobileBg.Tests", "NeMobileBg.Tests\NeMobileBg.Tests.csproj", "{AA607F87-862A-46C7-8B10-4A487A754544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeMobileBg.Common", "NeMobileBg.Common\NeMobileBg.Common.csproj", "{D71862FB-E1B8-4CA6-8108-04CE4E5B2B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeMobileBg.Common", "NeMobileBg.Common\NeMobileBg.Common.csproj", "{D71862FB-E1B8-4CA6-8108-04CE4E5B2B4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

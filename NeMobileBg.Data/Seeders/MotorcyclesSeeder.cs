@@ -32,6 +32,7 @@ namespace NeMobileBg.Data.Seeders
                     Description = "Description for Car " + i,
                     Condition = "Used",
                     Category = "Sport",
+                    CreatedOn = DateTime.UtcNow.AddHours(-i).ToString(),
                     UserId = GetRandomUserId(),
                 };
 

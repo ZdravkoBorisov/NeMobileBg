@@ -1,0 +1,12 @@
+﻿@model NeMobileBg.Data.Models.Vehicle
+
+<div class="col-md-3 mb-4">
+    <div class="card">
+        <img src="@Model.ImageUrl" class="card-img-top" alt="Vehicle Image">
+        <div class="card-body">
+            <h5 class="card-title">@($"{Model.Make} {Model.Model}")</h5>
+            <p class="card-text">@($"Price: {Model.Price:C0}")</p>
+            <p class="card-text">@($"Year: {Model.Year}")</p>
+        </div>
+    </div>
+</div>

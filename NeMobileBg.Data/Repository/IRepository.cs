@@ -22,5 +22,7 @@ public interface IRepository
 
     Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class;
 
+    Task<IEnumerable<T>> GetLastCreatedAsync<T>(Expression<Func<T, object>> orderProperty, int count) where T : class;
+
     Task SaveChangesAsync();
 }

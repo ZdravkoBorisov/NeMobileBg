@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NeMobileBg.Services.Contracts;
 using NeMobileBg.Web.Models;
 using System.Diagnostics;
 
@@ -6,15 +7,22 @@ namespace NeMobileBg.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IHomePageService _homePageService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IHomePageService homePageService)
     {
-        _logger = logger;
+        this._homePageService = homePageService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var vehicles = await this._homePageService.GetHomePageVehicles();
+
+        if (vehicles != null)
+        {
+            return this.View(vehicles);
+        }
+
         return View();
     }
 

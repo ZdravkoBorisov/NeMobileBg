@@ -20,7 +20,7 @@ public class Repository : IRepository
     public async Task<T> FindAsync<T>(Expression<Func<T, bool>> predicate)
         where T : class
     {
-        return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate)!;
+        return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync<T>() 
@@ -31,7 +31,9 @@ public class Repository : IRepository
 
     public async Task<IEnumerable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate) where T : class
     {
-        return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+        return await _dbContext.Set<T>()
+                                  .Where(predicate)
+                                    .ToListAsync();
     }
 
     public async Task RemoveAsync<T>(T entity) 
@@ -65,5 +67,21 @@ public class Repository : IRepository
     {
         return await _dbContext.Set<T>().FindAsync(id);
     }
-   
+
+    public async Task<IEnumerable<T>> GetLastCreatedAsync<T>(Expression<Func<T, object>> orderProperty, int count) where T : class
+    {
+        try
+        {
+            return await _dbContext.Set<T>()
+                              .OrderByDescending(orderProperty)
+                                  .Take(count)
+                                      .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            //todo
+            return new List<T>();
+        }
+       
+    }
 }

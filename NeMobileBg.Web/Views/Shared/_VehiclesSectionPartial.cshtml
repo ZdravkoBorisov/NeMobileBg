@@ -1,0 +1,14 @@
+﻿@model IEnumerable<NeMobileBg.Data.Models.Vehicle>
+
+<div class="row mb-4">
+    @foreach (var vehicle in Model)
+    {
+        <partial name="_VehiclesCardPartial" model="vehicle" />
+    }
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="text-left mt-3 mb-3">
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary">Register to View More</a>
+        </div>
+    }
+</div>

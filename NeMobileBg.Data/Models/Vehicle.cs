@@ -27,6 +27,8 @@ public class Vehicle
 
     public string? EuroStandard { get; set; }
 
+    public string CreatedOn { get; set; } = default!;
+
     public string Gearbox { get; set; } = default!;
 
     public string Condition { get; set; } = default!;

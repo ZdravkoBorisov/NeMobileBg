@@ -14,7 +14,7 @@ internal class TrucksSeeder : IEntityTypeConfiguration<Truck>
     {
         var result = new List<Truck>();
        
-        for (int i = 0; i < 23; i++)
+        for (int i = 1; i < 23; i++)
         {
             var truck = new Truck
             {
@@ -31,6 +31,7 @@ internal class TrucksSeeder : IEntityTypeConfiguration<Truck>
                 Description = "Description for Car " + i,
                 Axles = 8,
                 Condition = "Used",
+                CreatedOn = DateTime.UtcNow.AddHours(-i).ToString(),
                 UserId = GetRandomUserId(),
             };
 
