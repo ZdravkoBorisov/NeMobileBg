@@ -15,4 +15,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.18" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NeMobileBg.Common\NeMobileBg.Common.csproj" />
+    <ProjectReference Include="..\NeMobileBg.Data\NeMobileBg.Data.csproj" />
+    <ProjectReference Include="..\NeMobileBg.Services\NeMobileBg.Services.csproj" />
+  </ItemGroup>
+
 </Project>

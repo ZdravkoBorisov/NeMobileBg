@@ -1,4 +1,6 @@
-﻿namespace NeMobileBg.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace NeMobileBg.Data.Models;
 
 public class Vehicle
 {
@@ -8,6 +10,7 @@ public class Vehicle
 
     public string Model { get; set; } = default!;
 
+    [Precision(9,0)]
     public decimal Price { get; set; } = default!;
 
     public int HorsePower { get; set; } = default!;
