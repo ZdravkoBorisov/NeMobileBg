@@ -21,19 +21,19 @@ public class Vehicle
 
     public string Color { get; set; } = default!;
 
-    public int Year { get; set; } = default!;
+    public string Year { get; set; } = default!;
 
     public int Mileage { get; set; }
 
     public string? EuroStandard { get; set; }
-
-    public string CreatedOn { get; set; } = default!;
 
     public string Gearbox { get; set; } = default!;
 
     public string Condition { get; set; } = default!;
 
     public string FuelType { get; set; } = default!;
+
+    public string CreatedOn { get; set; } = default!;
 
     public string UserId { get; set; } = default!;
 

@@ -1,4 +1,4 @@
-﻿using NeMobileBg.Common.Home;
+﻿using NeMobileBg.Common.Models.Home;
 using NeMobileBg.Data.Models;
 using NeMobileBg.Data.Repository;
 using NeMobileBg.Services.Contracts;

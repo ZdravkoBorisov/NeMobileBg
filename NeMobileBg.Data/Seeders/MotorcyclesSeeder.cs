@@ -21,7 +21,7 @@ namespace NeMobileBg.Data.Seeders
                 {
                     Make = "Brand" + i,
                     Model = "Model" + i,
-                    Year = 2000 + i,
+                    Year = DateTime.Now.AddDays(-i + 5).ToString(),
                     Price = 10000 * i,
                     Color = GetRandomColor(),
                     HorsePower = 100 + i,

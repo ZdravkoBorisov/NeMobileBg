@@ -1,6 +1,6 @@
 ﻿using NeMobileBg.Data.Models;
 
-namespace NeMobileBg.Common.Home;
+namespace NeMobileBg.Common.Models.Home;
 
 public class HomePageModel
 {
