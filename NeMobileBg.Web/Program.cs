@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NeMobileBg.Data;
 using NeMobileBg.Data.Models;
+using NeMobileBg.Data.Repository;
 using NeMobileBg.Services.Cars;
 using NeMobileBg.Services.Contracts;
 using NeMobileBg.Services.Motorcycles;
@@ -9,6 +10,7 @@ using NeMobileBg.Services.Tyres;
 using NeMobileBg.Services.Users;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -20,6 +22,8 @@ builder.Services.AddScoped<ITrucksService, TrucksService>();
 builder.Services.AddScoped<IMotorcycleService, MotorcyclesService>();
 builder.Services.AddScoped<ITyresService, TyresService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IRepository, Repository>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
