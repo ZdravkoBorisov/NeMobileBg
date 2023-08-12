@@ -43,9 +43,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         if (this._seedFlag)
         {
             //builder.ApplyConfiguration(new UsersSeeder());
-            builder.ApplyConfiguration(new CarsSeeder());
-            builder.ApplyConfiguration(new TrucksSeeder());
-            builder.ApplyConfiguration(new MotorcyclesSeeder());
+            //builder.ApplyConfiguration(new CarsSeeder());
+            //builder.ApplyConfiguration(new TrucksSeeder());
+            //builder.ApplyConfiguration(new MotorcyclesSeeder());
+            //builder.ApplyConfiguration(new RolesSeeder());
+            builder.ApplyConfiguration(new IdentityRolesUsersSeeder());
         }
     }
 }

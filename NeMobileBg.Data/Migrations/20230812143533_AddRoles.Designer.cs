@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeMobileBg.Data;
 
@@ -11,9 +12,10 @@ using NeMobileBg.Data;
 namespace NeMobileBg.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230812143533_AddRoles")]
+    partial class AddRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +49,22 @@ namespace NeMobileBg.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0c3fe04b-652f-4fdb-aa6d-a5fb6ce4c554",
+                            ConcurrencyStamp = "a67bd907-7425-42fa-b820-e94120060d37",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9",
+                            ConcurrencyStamp = "f2dd27b3-a504-4956-bb86-34898020b302",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -136,28 +154,6 @@ namespace NeMobileBg.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "40c03149-66ea-40bb-aa7e-7a21c50ad877",
-                            RoleId = "0c3fe04b-652f-4fdb-aa6d-a5fb6ce4c554"
-                        },
-                        new
-                        {
-                            UserId = "3035f543-8ce5-457d-8073-c086473cf18a",
-                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
-                        },
-                        new
-                        {
-                            UserId = "296290bd-402b-4dc7-922f-3586f8d0c882",
-                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
-                        },
-                        new
-                        {
-                            UserId = "037f69eb-1390-435f-a085-e738fb60e93e",
-                            RoleId = "f4bf6bac-19eb-40d0-afdd-10bc1c87b4c9"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

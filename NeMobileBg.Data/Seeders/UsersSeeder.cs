@@ -16,19 +16,6 @@ internal class UsersSeeder : IEntityTypeConfiguration<ApplicationUser>
         var result = new List<ApplicationUser>();
         var hasher = new PasswordHasher<ApplicationUser>();
 
-        var adminUser = new ApplicationUser
-        {
-            Id = Guid.NewGuid().ToString(),
-            UserName = "admin@admin.com",
-            Email = "admin@admin.com",
-            FirstName = "Admin",
-            LastName = "User",
-            PasswordHash = hasher.HashPassword(null, "123456"),
-            City = "Sample City",
-            EmailConfirmed = true,
-        };
-        result.Add(adminUser);
-
         for (int i = 0; i < 10; i++)
         {
             var user = new ApplicationUser
