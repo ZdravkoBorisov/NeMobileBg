@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NeMobileBg.Data.Models;
+using System;
 
 namespace NeMobileBg.Data.Seeders
 {
@@ -33,6 +34,7 @@ namespace NeMobileBg.Data.Seeders
                     Mileage = 10000 * i,
                     Description = "Description for Car " + i,
                     Category = "Estate",
+                    ImageUrl = GetImage(),
                     Condition = "Used",
                     CreatedOn = DateTime.UtcNow.AddHours(-i).ToString(),
                     UserId = GetRandomUserId(),
@@ -77,6 +79,17 @@ namespace NeMobileBg.Data.Seeders
             };
             Random random = new();
             return usersIds[random.Next(usersIds.Length)];
+
+        }
+
+        private static byte[] GetImage()
+        {
+            var path = "C:\\Users\\Zdravko Borisov\\Desktop\\Resources\\NeMobileBgResources\\cars";
+            var random = new Random();
+            string[] imageFiles = Directory.GetFiles(path, "*.jpg");
+
+            string randomImagePath = imageFiles[random.Next(imageFiles.Length)];
+            return File.ReadAllBytes(randomImagePath);
 
         }
     }

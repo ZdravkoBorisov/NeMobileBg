@@ -31,6 +31,7 @@ internal class TrucksSeeder : IEntityTypeConfiguration<Truck>
                 Description = "Description for Car " + i,
                 Axles = 8,
                 Condition = "Used",
+                ImageUrl = GetImage(),
                 CreatedOn = DateTime.UtcNow.AddHours(-i).ToString(),
                 UserId = GetRandomUserId(),
             };
@@ -74,6 +75,17 @@ internal class TrucksSeeder : IEntityTypeConfiguration<Truck>
             };
         Random random = new();
         return usersIds[random.Next(usersIds.Length)];
+
+    }
+
+    private static byte[] GetImage()
+    {
+        var path = "C:\\Users\\Zdravko Borisov\\Desktop\\Resources\\NeMobileBgResources\\trucks";
+        var random = new Random();
+        string[] imageFiles = Directory.GetFiles(path, "*.jpg");
+
+        string randomImagePath = imageFiles[random.Next(imageFiles.Length)];
+        return File.ReadAllBytes(randomImagePath);
 
     }
 }

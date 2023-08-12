@@ -7,7 +7,7 @@ namespace NeMobileBg.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
-    private readonly bool _seedFlag = true;
+    private readonly bool _seedFlag = false;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -34,12 +34,12 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         if (this._seedFlag)
         {
-            //builder.ApplyConfiguration(new UsersSeeder());
+            builder.ApplyConfiguration(new UsersSeeder());
             builder.ApplyConfiguration(new CarsSeeder());
             builder.ApplyConfiguration(new TrucksSeeder());
             builder.ApplyConfiguration(new MotorcyclesSeeder());
-            //builder.ApplyConfiguration(new RolesSeeder());
-            //builder.ApplyConfiguration(new IdentityRolesUsersSeeder());
+            builder.ApplyConfiguration(new RolesSeeder());
+            builder.ApplyConfiguration(new IdentityRolesUsersSeeder());
         }
     }
 }
