@@ -21,4 +21,11 @@
     <ProjectReference Include="..\NeMobileBg.Services\NeMobileBg.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Cars\" />
+    <Folder Include="Views\Motorcycles\" />
+    <Folder Include="Views\Tyres\" />
+    <Folder Include="Views\Trucks\" />
+  </ItemGroup>
+
 </Project>

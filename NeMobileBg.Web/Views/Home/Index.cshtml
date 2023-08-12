@@ -10,16 +10,60 @@
     <p>Your premier destination for exploring a wide variety of vehicles. Whether you're looking for the perfect car, a rugged truck, or a sleek motorcycle, we have something for everyone. Browse through our collection and find your dream vehicle today!</p>
 </div>
 
+@if (User != null && User.Identity.IsAuthenticated)
+{
+    <div class="container">
+        <div class="row ">
+            <div class="col-4">
+                <button class="toggle-button btn btn-primary btn-block" data-toggle-target="cars">Find Your Car</button>
+            </div>
+            <div class="col-4 ">
+                <button class="toggle-button btn btn-secondary btn-block" data-toggle-target="trucks">Find Your Truck</button>
+            </div>
+            <div class="col-4 ">
+                <button class="toggle-button btn btn-info btn-block" data-toggle-target="motorcycles">Find Your Motorcycle</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div class="vehicle-section hidden" id="cars">
+        <h2>Cars</h2>
+        <partial name="Partials/Cars/_SearchCarsPartial" />
+    </div>
+
+    <div class="vehicle-section hidden" id="trucks">
+        <h2>Trucks</h2>
+        <partial name="Partials/Trucks/_SearchTrucksPartial" />
+    </div>
+
+    <div class="vehicle-section hidden" id="motorcycles">
+        <h2>Motorcycles</h2>
+        <partial name="Partials/Motorcycles/_SearchMotorcyclesPartial" />
+    </div>
+</div>
+
 <div class="container">
     <h2>Cars</h2>
-    <partial name="_VehiclesSectionPartial" model="Model.Cars" />
-
+    <partial name="Partials/_VehiclesSectionPartial" model="Model.Cars" />
 
     <h2>Trucks</h2>
-    <partial name="_VehiclesSectionPartial" model="Model.Trucks" />
-
+    <partial name="Partials/_VehiclesSectionPartial" model="Model.Trucks" />
 
     <h2>Motorcycles</h2>
-    <partial name="_VehiclesSectionPartial" model="Model.Motorcycles" />
-
+    <partial name="Partials/_VehiclesSectionPartial" model="Model.Motorcycles" />
 </div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".toggle-button").click(function () {
+                const targetId = $(this).data("toggle-target");
+                $(".vehicle-section").removeClass("visible"); // Hide all sections
+                $("#" + targetId).addClass("visible"); // Show the clicked section
+            });
+        });
+    </script>
+}

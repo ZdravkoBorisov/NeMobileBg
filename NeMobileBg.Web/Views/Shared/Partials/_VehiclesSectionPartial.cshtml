@@ -3,7 +3,7 @@
 <div class="row mb-4">
     @foreach (var vehicle in Model)
     {
-        <partial name="_VehiclesCardPartial" model="vehicle" />
+        <partial name="Partials/_VehiclesCardPartial" model="vehicle" />
     }
     @if (!User.Identity.IsAuthenticated)
     {
