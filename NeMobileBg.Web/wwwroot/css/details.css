@@ -1,0 +1,26 @@
+﻿.price-top {
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    font-size: 24px;
+}
+
+.created-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.card{
+    background-color: aliceblue;
+}
+
+.text-center {
+    font-size: 22px;
+    margin-top: 15%;
+    margin-left: 25%;
+    width: 50%;
+    background-color: aliceblue;
+   font-family: 'Playfair Display', serif;
+   border-radius: 10px;
+}

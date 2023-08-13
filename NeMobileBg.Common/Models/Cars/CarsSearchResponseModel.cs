@@ -2,11 +2,15 @@
 
 public class CarsSearchResponseModel
 {
+    public string CarId { get; set; } = default!;
+
     public string Make { get; set; } = default!;
 
     public string Model { get; set; } = default!;
 
     public string Description { get; set; } = default!;
+
+    public string OwnerId { get; set; } = default;
 
     public byte[]? ImageUrl { get; set; }
 

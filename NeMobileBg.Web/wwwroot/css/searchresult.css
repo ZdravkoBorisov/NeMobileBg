@@ -28,3 +28,11 @@
 .small-text {
     font-size: 12px; 
 }
+
+.hoverable-element {
+    transition: transform 0.2s;
+}
+
+    .hoverable-element:hover {
+        transform: scale(1.05); 
+    }

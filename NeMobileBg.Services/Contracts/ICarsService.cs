@@ -4,6 +4,11 @@ namespace NeMobileBg.Services.Contracts;
 
 public interface ICarsService
 {
-    Task<IEnumerable<CarsSearchModel>> GetCarsSearchData();
-    Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteria(CarsSearchModel searchModel);
+    Task<CarsDataModel> GetDetailsAsync(string id);
+
+    Task<IEnumerable<CarsSearchModel>> GetCarsSearchDataAsync();
+
+    Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteriaAsync(CarsSearchModel searchModel);
+
+    Task EditAsync(CarsDataModel editModel);
 }

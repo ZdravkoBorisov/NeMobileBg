@@ -14,7 +14,50 @@ public class CarsService : ICarsService
         this._repository = repository;
     }
 
-    public async Task<IEnumerable<CarsSearchModel>> GetCarsSearchData()
+    public async Task<CarsDataModel> GetDetailsAsync(string id)
+    {
+        try
+        {
+            var car = await this._repository.GetByIdAsync<Car>(id);
+            if (car == null)
+            {
+                return null;
+            }
+            var result = new CarsDataModel
+            {
+                Id = car.Id,
+                Make = car.Make,
+                Model = car.Model,
+                Description = car.Description,
+                ImageUrl = car.ImageUrl,
+                Price = car.Price,
+                Year = car.Year,
+                Category = car.Category,
+                Gearbox = car.Gearbox,
+                CreatedOn = car.CreatedOn,
+                Color = car.Color,
+                Condition = car.Condition,
+                EuroStandard = car.EuroStandard,
+                FuelType = car.FuelType,
+                HorsePower = car.HorsePower,
+                Mileage = car.Mileage,
+                Convertible = car.Convertible,
+                Doors = car.Doors,
+                Seats = car.Seats,
+                UserId = car.UserId,
+            };
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return null;
+        }
+
+    }
+
+    public async Task<IEnumerable<CarsSearchModel>> GetCarsSearchDataAsync()
     {
         var cars = await this._repository.GetAllAsync<Car>();
 
@@ -27,7 +70,7 @@ public class CarsService : ICarsService
         return result;
     }
 
-    public async Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteria(CarsSearchModel searchModel)
+    public async Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteriaAsync(CarsSearchModel searchModel)
     {
         var result = new List<CarsSearchResponseModel>();
 
@@ -119,6 +162,7 @@ public class CarsService : ICarsService
         {
             var carModel = new CarsSearchResponseModel
             {
+                CarId = car.Id,
                 Make = car.Make,
                 Model = car.Model,
                 Description = car.Description,
@@ -127,12 +171,59 @@ public class CarsService : ICarsService
                 Year = car.Year,
                 Category = car.Category,
                 Gearbox = car.Gearbox,
-                CreatedOn = car.CreatedOn
+                CreatedOn = car.CreatedOn,
+                OwnerId = car.UserId
             };
 
             result.Add(carModel);
         }
 
         return result;
+    }
+
+    public async Task<IEnumerable<CarsSearchResponseModel>> GetLatestCarsAsync()
+    {
+        var cars = await this._repository.GetAllAsync<Car>();
+
+        var result = cars.OrderByDescending(x => x.CreatedOn).Take(3).Select(x => new CarsSearchResponseModel
+        {
+            CarId = x.Id,
+            Make = x.Make,
+            Model = x.Model,
+            Description = x.Description,
+            ImageUrl = x.ImageUrl,
+            Price = x.Price,
+            Year = x.Year,
+            Category = x.Category,
+            Gearbox = x.Gearbox,
+            CreatedOn = x.CreatedOn
+        });
+
+        return result;
+    }
+
+    public async Task EditAsync(CarsDataModel editModel)
+    {
+        var car = await this._repository.GetByIdAsync<Car>(editModel.Id);
+
+        car.Make = editModel.Make;
+        car.Model = editModel.Model;
+        car.Description = editModel.Description;
+        car.ImageUrl = editModel.ImageUrl;
+        car.Price = editModel.Price;
+        car.Year = editModel.Year;
+        car.Category = editModel.Category;
+        car.Gearbox = editModel.Gearbox;
+        car.Color = editModel.Color;
+        car.Condition = editModel.Condition;
+        car.EuroStandard = editModel.EuroStandard;
+        car.FuelType = editModel.FuelType;
+        car.HorsePower = editModel.HorsePower;
+        car.Mileage = editModel.Mileage;
+        car.Convertible = editModel.Convertible;
+        car.Doors = editModel.Doors;
+        car.Seats = editModel.Seats;
+
+        await this._repository.UpdateAsync(car);
     }
 }

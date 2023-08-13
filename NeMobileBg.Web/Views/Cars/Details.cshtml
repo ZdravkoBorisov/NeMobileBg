@@ -1,0 +1,66 @@
+﻿@using NeMobileBg.Common.Models.Cars;
+@using System.Security.Claims;
+@model CarsDataModel
+
+@{
+    ViewData["Title"] = "Car Details";
+
+    string ConvertByteArrayToBase64(byte[] byteArray)
+    {
+        if (byteArray != null)
+        {
+            return Convert.ToBase64String(byteArray);
+        }
+        return string.Empty;
+    }
+}
+
+<link rel="stylesheet" href="~/css/details.css" />
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="row g-0">
+            @if (User.Identity.IsAuthenticated && Model.UserId == ViewBag.UserId)
+            {
+                <a asp-controller="Cars" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary float-end">Edit</a>
+            }
+            <div class="col-md-4">
+                <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(Model.ImageUrl)" class="card-img-top hoverable-element" alt="Vehicle Image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@($"{Model.Make} {Model.Model}")</h5>
+                    <div class="text-muted small mt-3 created-bottom">
+                        <p><strong>Created On:</strong> @Model.CreatedOn</p>
+                    </div>
+                    <p class="card-text price-top"><strong>Price:</strong> @($"{Model.Price:C0}")</p>
+                            <p class="card-text ">@Model.Description</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-text"><strong>Year:</strong> @Model.Year</p>
+                            <p class="card-text"><strong>Category:</strong> @Model.Category</p>
+                            <p class="card-text"><strong>Color:</strong> @Model.Color</p>
+                            <p class="card-text"><strong>Euro Standard:</strong> @Model.EuroStandard</p>
+                            <p class="card-text"><strong>Horsepower:</strong> @Model.HorsePower</p>
+                            <p class="card-text"><strong>Convertible:</strong> @Model.Convertible</p>
+                            <p class="card-text"><strong>Seats:</strong> @Model.Seats</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="card-text"><strong>Gearbox:</strong> @Model.Gearbox</p>
+                            <p class="card-text"><strong>Condition:</strong> @Model.Condition</p>
+                            <p class="card-text"><strong>Fuel Type:</strong> @Model.FuelType</p>
+                            <p class="card-text"><strong>Mileage:</strong> @Model.Mileage</p>
+                            <p class="card-text"><strong>Doors:</strong> @Model.Doors</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="text-center">
+        <p class="mb-0">"The journey of a thousand miles begins with one turn of the key."</p>
+        <p class="small">- Unknown</p>
+    </div>
