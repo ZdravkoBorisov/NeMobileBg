@@ -15,6 +15,43 @@ public class CarsService : ICarsService
         this._repository = repository;
     }
 
+    public async Task<string> CreateAsync(CarsDataModel dataModel, string ownerId)
+    {
+        var car = new Car
+        {
+            Id = Guid.NewGuid().ToString(),
+            Make = dataModel.Make,
+            Model = dataModel.Model,
+            Description = dataModel.Description,
+            Price = dataModel.Price,
+            Year = dataModel.Year,
+            Category = dataModel.Category,
+            Gearbox = dataModel.Gearbox,
+            CreatedOn = DateTime.UtcNow.ToString(),
+            Color = dataModel.Color,
+            Condition = dataModel.Condition,
+            EuroStandard = dataModel.EuroStandard,
+            FuelType = dataModel.FuelType,
+            HorsePower = dataModel.HorsePower,
+            Mileage = dataModel.Mileage,
+            Convertible = dataModel.Convertible,
+            Doors = dataModel.Doors,
+            Seats = dataModel.Seats,
+            UserId = ownerId,
+        };
+
+        if (dataModel.NewImage !=null)
+        {
+            var bytes = await this.GetBytes(dataModel.NewImage);
+            car.ImageUrl = bytes;
+        }
+
+        await this._repository.AddAsync(car);
+        await this._repository.SaveChangesAsync();
+
+        return car.Id;
+
+    }
     public async Task Delete(string id)
     {
         var car = await this._repository.GetByIdAsync<Car>(id);
@@ -190,34 +227,13 @@ public class CarsService : ICarsService
         return result;
     }
 
-    public async Task<IEnumerable<CarsSearchResponseModel>> GetLatestCarsAsync()
-    {
-        var cars = await this._repository.GetAllAsync<Car>();
-
-        var result = cars.OrderByDescending(x => x.CreatedOn).Take(3).Select(x => new CarsSearchResponseModel
-        {
-            CarId = x.Id,
-            Make = x.Make,
-            Model = x.Model,
-            Description = x.Description,
-            ImageUrl = x.ImageUrl,
-            Price = x.Price,
-            Year = x.Year,
-            Category = x.Category,
-            Gearbox = x.Gearbox,
-            CreatedOn = x.CreatedOn
-        });
-
-        return result;
-    }
-
     public async Task EditAsync(CarsDataModel editModel)
     {
         var car = await this._repository.GetByIdAsync<Car>(editModel.Id);
 
         if (editModel.NewImage != null)
         {
-            var imgBytes = await GetBytes(editModel.NewImage);
+            var imgBytes = await this.GetBytes(editModel.NewImage);
             car.ImageUrl = imgBytes;
         }
 
@@ -242,7 +258,7 @@ public class CarsService : ICarsService
         await this._repository.SaveChangesAsync();
     }
 
-    public static async Task<byte[]> GetBytes(IFormFile formFile)
+    private async Task<byte[]> GetBytes(IFormFile formFile)
     {
         await using var memoryStream = new MemoryStream();
         await formFile.CopyToAsync(memoryStream);

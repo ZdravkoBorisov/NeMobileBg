@@ -1,0 +1,106 @@
+﻿@using NeMobileBg.Common.Models.Cars;
+@model CarsDataModel
+
+@{
+    ViewData["Title"] = "Add Car";
+}
+
+<div class="container mt-5">
+    <h2>Add Car</h2>
+    <form asp-controller="Cars" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Make">Make:</label>
+            <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" />
+        </div>
+        <div class="form-group">
+            <label for="Model">Model:</label>
+            <input type="text" id="Model" name="Model" class="form-control" value="@Model.Model" />
+        </div>
+        <div class="form-group">
+            <label for="Description">Description:</label>
+            <textarea id="Description" name="Description" class="form-control">@Model.Description</textarea>
+        </div>
+        <div class="form-group">
+            <input type="file" id="NewImage" name="NewImage" class="form-control" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="Price">Price:</label>
+            <input type="number" id="Price" name="Price" class="form-control" value="@Model.Price" />
+        </div>
+        <div class="form-group">
+            <label for="Year">Year:</label>
+            <input type="date" id="Year" name="Year" class="form-control" value="@Model.Year" />
+        </div>
+        <div class="form-group">
+            <label for="Category">Category:</label>
+            <select id="Category" name="Category" class="form-control">
+                <option value="Sedan">Sedan</option>
+                <option value="Hatch">Hatch</option>
+                <option value="Estate">Estate</option>
+                <option value="Luxury">Luxury</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Gearbox">Gearbox:</label>
+            <select id="Gearbox" name="Gearbox" class="form-control">
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Color">Color:</label>
+            <input type="text" id="Color" name="Color" class="form-control" value="@Model.Color" />
+        </div>
+        <div class="form-group">
+            <label for="Condition">Condition:</label>
+            <select id="Condition" name="Condition" class="form-control">
+                <option value="New">New</option>
+                <option value="Used">Used</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="EuroStandard">Euro Standard:</label>
+            <input type="number" id="EuroStandard" name="EuroStandard" class="form-control" value="@Model.EuroStandard" />
+        </div>
+        <div class="form-group">
+            <label for="FuelType">Fuel Type:</label>
+            <select id="FuelType" name="FuelType" class="form-control">
+                <option value="Gasoline">Gasoline</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Electric">Electric</option>
+                <option value="Petrol">Petrol</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="HorsePower">Horsepower:</label>
+            <input type="number" id="HorsePower" name="HorsePower" class="form-control" value="@Model.HorsePower" />
+        </div>
+        <div class="form-group">
+            <label for="Mileage">Mileage:</label>
+            <input type="number" id="Mileage" name="Mileage" class="form-control" value="@Model.Mileage" />
+        </div>
+        <div class="form-group">
+            <label for="Convertible">Convertible:</label>
+            <select id="Convertible" name="Convertible" class="form-control">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Doors">Doors:</label>
+            <select id="Doors" name="Doors" class="form-control">
+                <option value="2">2</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Seats">Seats:</label>
+            <select id="Seats" name="Seats" class="form-control">
+                <option value="2">2</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Car</button>
+    </form>
+</div>
