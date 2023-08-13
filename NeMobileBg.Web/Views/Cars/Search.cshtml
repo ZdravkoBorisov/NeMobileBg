@@ -22,7 +22,10 @@
             <div class="col-12 mb-4 hoverable-element">
                 @if (User.Identity.IsAuthenticated && car.OwnerId == ViewBag.UserId)
                 {
-                    <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn btn-outline-info float-end">Edit</a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-outline-info">Edit</a>
+                        <a asp-controller="Cars" asp-action="Delete" asp-route-id="@car.CarId" class="btn btn-outline-danger">Delete</a>
+                    </div>
                 }
                 <div class="card card-horizontal">
                     <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.CarId" class="stretched-link"></a>

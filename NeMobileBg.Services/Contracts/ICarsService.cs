@@ -11,4 +11,5 @@ public interface ICarsService
     Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteriaAsync(CarsSearchModel searchModel);
 
     Task EditAsync(CarsDataModel editModel);
+    Task Delete(string id);
 }

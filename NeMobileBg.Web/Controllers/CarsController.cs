@@ -75,7 +75,14 @@ public class CarsController : Controller
        
             await this._carsService.EditAsync(car);
             return this.RedirectToAction("Details", new { id = car.Id });
-        
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(string id)
+    {
+       await this._carsService.Delete(id);
+
+        return this.RedirectToAction("Search");
     }
 
 }

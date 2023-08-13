@@ -15,6 +15,14 @@ public class CarsService : ICarsService
         this._repository = repository;
     }
 
+    public async Task Delete(string id)
+    {
+        var car = await this._repository.GetByIdAsync<Car>(id);
+
+        await this._repository.RemoveAsync(car);
+        await this._repository.SaveChangesAsync();
+    }
+
     public async Task<CarsDataModel> GetDetailsAsync(string id)
     {
         try
@@ -206,7 +214,7 @@ public class CarsService : ICarsService
     public async Task EditAsync(CarsDataModel editModel)
     {
         var car = await this._repository.GetByIdAsync<Car>(editModel.Id);
-       
+
         if (editModel.NewImage != null)
         {
             var imgBytes = await GetBytes(editModel.NewImage);
