@@ -3,8 +3,9 @@
 
 <link rel="stylesheet" href="~/css/searchresult.css" />
 
-
 @{
+    ViewData["Title"] = "Cars Search Results";
+
     string ConvertByteArrayToBase64(byte[] byteArray)
     {
         if (byteArray != null)
@@ -14,11 +15,6 @@
         return string.Empty;
     }
 }
-
-@{
-    ViewData["Title"] = "Cars Search Results";
-}
-
 <div class="container-fluid">
     <div class="row">
         @foreach (var car in Model)
@@ -26,7 +22,7 @@
             <div class="col-12 mb-4 hoverable-element">
                 @if (User.Identity.IsAuthenticated && car.OwnerId == ViewBag.UserId)
                 {
-                    <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary float-end">Edit</a>
+                    <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn btn-outline-info float-end">Edit</a>
                 }
                 <div class="card card-horizontal">
                     <a asp-controller="Cars" asp-action="Details" asp-route-id="@car.CarId" class="stretched-link"></a>
@@ -36,33 +32,30 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title ">@($"{car.Make} {car.Model}")</h5>
-                                <p class="card-text ">@car.Description</p>
+                                <h5 class="card-title">@($"{car.Make} {car.Model}")</h5>
+                                <p class="card-text">@car.Description</p>
 
-                                <div class="col-md-6 ">
+                                <div class="col-md-6">
                                     <p class="card-text">@($"Year: {car.Year}")</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="card-text">@($"Category: {car.Category}")</p>
                                 </div>
-                                <div class="col-md-6 ">
+                                <div class="col-md-6">
                                     <p class="card-text">@($"Gearbox: {car.Gearbox}")</p>
                                 </div>
-                                <div class="price-top ">
+                                <div class="price-top">
                                     <p class="card-text">@($"Price: {car.Price:C0}")</p>
                                 </div>
 
-                                <div class="created-bottom ">
+                                <div class="created-bottom">
                                     <p class="card-text small-text">@($"Created On: {car.CreatedOn}")</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         }
     </div>
 </div>
-

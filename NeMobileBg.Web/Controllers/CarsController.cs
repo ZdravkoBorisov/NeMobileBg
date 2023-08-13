@@ -72,13 +72,10 @@ public class CarsController : Controller
     [HttpPost]
     public async Task<IActionResult> Edit(CarsDataModel car)
     {
-        if (this.ModelState.IsValid)
-        {
+       
             await this._carsService.EditAsync(car);
             return this.RedirectToAction("Details", new { id = car.Id });
-        }
-
-        return this.View(car);
+        
     }
 
 }

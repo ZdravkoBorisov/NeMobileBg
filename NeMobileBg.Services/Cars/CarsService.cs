@@ -1,4 +1,5 @@
-﻿using NeMobileBg.Common.Models.Cars;
+﻿using Microsoft.AspNetCore.Http;
+using NeMobileBg.Common.Models.Cars;
 using NeMobileBg.Data.Models;
 using NeMobileBg.Data.Repository;
 using NeMobileBg.Services.Contracts;
@@ -205,11 +206,16 @@ public class CarsService : ICarsService
     public async Task EditAsync(CarsDataModel editModel)
     {
         var car = await this._repository.GetByIdAsync<Car>(editModel.Id);
+       
+        if (editModel.NewImage != null)
+        {
+            var imgBytes = await GetBytes(editModel.NewImage);
+            car.ImageUrl = imgBytes;
+        }
 
         car.Make = editModel.Make;
         car.Model = editModel.Model;
         car.Description = editModel.Description;
-        car.ImageUrl = editModel.ImageUrl;
         car.Price = editModel.Price;
         car.Year = editModel.Year;
         car.Category = editModel.Category;
@@ -225,5 +231,13 @@ public class CarsService : ICarsService
         car.Seats = editModel.Seats;
 
         await this._repository.UpdateAsync(car);
+        await this._repository.SaveChangesAsync();
+    }
+
+    public static async Task<byte[]> GetBytes(IFormFile formFile)
+    {
+        await using var memoryStream = new MemoryStream();
+        await formFile.CopyToAsync(memoryStream);
+        return memoryStream.ToArray();
     }
 }
