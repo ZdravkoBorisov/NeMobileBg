@@ -6,7 +6,6 @@ using NeMobileBg.Services;
 using NeMobileBg.Services.Cars;
 using NeMobileBg.Services.Contracts;
 using NeMobileBg.Services.Motorcycles;
-using NeMobileBg.Services.Trucks;
 using NeMobileBg.Services.Tyres;
 using NeMobileBg.Services.Users;
 
@@ -19,7 +18,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<ICarsService, CarsService>();
-builder.Services.AddScoped<ITrucksService, TrucksService>();
 builder.Services.AddScoped<IMotorcycleService, MotorcyclesService>();
 builder.Services.AddScoped<ITyresService, TyresService>();
 builder.Services.AddScoped<IUsersService, UsersService>();

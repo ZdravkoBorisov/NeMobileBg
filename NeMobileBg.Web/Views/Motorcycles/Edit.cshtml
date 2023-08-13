@@ -1,0 +1,111 @@
+﻿@using NeMobileBg.Common.Models.Cars;
+@model MotorcyclesDataModel
+
+@{
+    ViewData["Title"] = "Edit Car Details";
+
+    string ConvertByteArrayToBase64(byte[] byteArray)
+    {
+        if (byteArray != null)
+        {
+            return Convert.ToBase64String(byteArray);
+        }
+        return string.Empty;
+    }
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Edit Car Details</h2>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Cars" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="Make">Make:</label>
+                    <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" />
+                </div>
+                <div class="form-group">
+                    <label for="Model">Model:</label>
+                    <input type="text" id="Model" name="Model" class="form-control" value="@Model.Model" />
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description:</label>
+                    <textarea id="Description" name="Description" class="form-control">@Model.Description</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="OldImage">Image:</label>
+                </div>
+                <div class="form-group">
+                    <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(Model.ImageUrl)" id="OldImage" class="card-img-top" alt="Vehicle Image" style="max-width: 50%; max-height: 400px;">
+                </div>
+                <div class="form-group">
+                    <input type="file" id="NewImage" name="NewImage" class="form-control" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="Price">Price:</label>
+                    <input type="number" id="Price" name="Price" class="form-control" value="@Model.Price" />
+                </div>
+                <div class="form-group">
+                    <label for="Year">Year:</label>
+                    <input type="text" id="Year" name="Year" class="form-control" value="@Model.Year" />
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category:</label>
+                    <input type="text" id="Category" name="Category" class="form-control" value="@Model.Category" />
+                </div>
+                <div class="form-group">
+                    <label for="Gearbox">Gearbox:</label>
+                    <input type="text" id="Gearbox" name="Gearbox" class="form-control" value="@Model.Gearbox" />
+                </div>
+                <div class="form-group">
+                    <label for="Color">Color:</label>
+                    <input type="text" id="Color" name="Color" class="form-control" value="@Model.Color" />
+                </div>
+                <div class="form-group">
+                    <label for="Condition">Condition:</label>
+                    <input type="text" id="Condition" name="Condition" class="form-control" value="@Model.Condition" />
+                </div>
+                <div class="form-group">
+                    <label for="EuroStandard">Euro Standard:</label>
+                    <input type="text" id="EuroStandard" name="EuroStandard" class="form-control" value="@Model.EuroStandard" />
+                </div>
+                <div class="form-group">
+                    <label for="FuelType">Fuel Type:</label>
+                    <input type="text" id="FuelType" name="FuelType" class="form-control" value="@Model.FuelType" />
+                </div>
+                <div class="form-group">
+                    <label for="HorsePower">Horsepower:</label>
+                    <input type="number" id="HorsePower" name="HorsePower" class="form-control" value="@Model.HorsePower" />
+                </div>
+                <div class="form-group">
+                    <label for="Mileage">Mileage:</label>
+                    <input type="number" id="Mileage" name="Mileage" class="form-control" value="@Model.Mileage" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const newImageInput = document.getElementById("NewImage");
+        const oldImage = document.getElementById("OldImage");
+
+        newImageInput.addEventListener("change", function () {
+            if (newImageInput.files.length > 0) {
+                const selectedImage = newImageInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    oldImage.src = e.target.result;
+                };
+
+                reader.readAsDataURL(selectedImage);
+            }
+        });
+    });
+</script>

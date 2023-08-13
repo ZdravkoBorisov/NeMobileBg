@@ -20,7 +20,6 @@ public class HomePageService : IHomePageService
 
         var cars = await this.GetHomePageCars();
         var motorcycles = await this.GetHomePageMotorcycles();
-        var trucks = await this.GetHomePageTrucks();
 
         if (cars != null)
         {
@@ -30,11 +29,6 @@ public class HomePageService : IHomePageService
         if (motorcycles != null)
         {
             result.Motorcycles = motorcycles;
-        }
-
-        if (trucks != null)
-        {
-            result.Trucks = trucks;
         }
 
         return result;
@@ -50,11 +44,5 @@ public class HomePageService : IHomePageService
     {
         var motorcycles = await this._repository.GetLastCreatedAsync<Motorcycle>(motorcycle => motorcycle.CreatedOn, count: 8);
         return motorcycles;
-    }
-
-    private async Task<IEnumerable<Truck>> GetHomePageTrucks()
-    {
-        var trucks = await this._repository.GetLastCreatedAsync<Truck>(truck => truck.CreatedOn, count: 8);
-        return trucks;
     }
 }

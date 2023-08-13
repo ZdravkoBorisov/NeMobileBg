@@ -20,9 +20,6 @@
                 <a asp-controller="Cars" asp-action="Search" class="btn btn-primary">Find Your Car</a>
             </div>
             <div class="col-4 ">
-                <a asp-controller="Trucks" asp-action="Search" class="btn btn-primary">Find Your Truck</a>
-            </div>
-            <div class="col-4 ">
                 <a asp-controller="Motorcycles" asp-action="Search" class="btn btn-primary">Find Your Motorcycle</a>
             </div>
         </div>
@@ -32,9 +29,6 @@
 <div class="container">
     <h2>Cars</h2>
     <partial name="Partials/_VehiclesSectionPartial" model="Model.Cars" />
-
-    <h2>Trucks</h2>
-    <partial name="Partials/_VehiclesSectionPartial" model="Model.Trucks" />
 
     <h2>Motorcycles</h2>
     <partial name="Partials/_VehiclesSectionPartial" model="Model.Motorcycles" />

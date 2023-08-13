@@ -1,6 +1,6 @@
 ﻿@using NeMobileBg.Common.Models.Cars;
 @using System.Security.Claims;
-@model CarsDataModel
+@model MotorcyclesDataModel
 
 @{
     ViewData["Title"] = "Car Details";
@@ -39,14 +39,12 @@
                             <p class="card-text"><strong>Color:</strong> @Model.Color</p>
                             <p class="card-text"><strong>Euro Standard:</strong> @Model.EuroStandard</p>
                             <p class="card-text"><strong>Horsepower:</strong> @Model.HorsePower</p>
-                            <p class="card-text"><strong>Seats:</strong> @Model.Seats</p>
                         </div>
                         <div class="col-md-6">
                             <p class="card-text"><strong>Gearbox:</strong> @Model.Gearbox</p>
                             <p class="card-text"><strong>Condition:</strong> @Model.Condition</p>
                             <p class="card-text"><strong>Fuel Type:</strong> @Model.FuelType</p>
                             <p class="card-text"><strong>Mileage:</strong> @Model.Mileage</p>
-                            <p class="card-text"><strong>Doors:</strong> @Model.Doors</p>
 
                         </div>
                     </div>

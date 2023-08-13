@@ -1,6 +1,6 @@
 ﻿namespace NeMobileBg.Common.Models.Cars;
 
-public class CarsSearchResponseModel
+public class MotorcyclesSearchResponseModel
 {
     public string CarId { get; set; } = default!;
 
@@ -15,8 +15,6 @@ public class CarsSearchResponseModel
     public byte[]? ImageUrl { get; set; }
 
     public decimal Price { get; set; } = default!;
-
-    public string RequiredLicense { get; set; }
 
     public string Year { get; set; } = default!;
 

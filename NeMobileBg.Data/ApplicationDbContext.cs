@@ -16,8 +16,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Car> Cars { get; set; } = default!;
 
-    public DbSet<Truck> Trucks { get; set; } = default!;
-
     public DbSet<Motorcycle> Motorcycles { get; set; } = default!;
 
     public DbSet<Tyre> Tyres { get; set; } = default!;
@@ -36,7 +34,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         {
             builder.ApplyConfiguration(new UsersSeeder());
             builder.ApplyConfiguration(new CarsSeeder());
-            builder.ApplyConfiguration(new TrucksSeeder());
             builder.ApplyConfiguration(new MotorcyclesSeeder());
             builder.ApplyConfiguration(new RolesSeeder());
             builder.ApplyConfiguration(new IdentityRolesUsersSeeder());

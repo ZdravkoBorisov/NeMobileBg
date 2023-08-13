@@ -1,5 +1,16 @@
-﻿namespace NeMobileBg.Services.Contracts;
+﻿using NeMobileBg.Common.Models.Cars;
+
+namespace NeMobileBg.Services.Contracts;
 
 public interface IMotorcycleService
 {
+    Task<string> CreateAsync(MotorcyclesDataModel dataModel, string ownerId);
+    Task<MotorcyclesDataModel> GetDetailsAsync(string id);
+
+    Task<IEnumerable<MotorcyclesSearchModel>> GetMotorcyclesSearchDataAsync();
+
+    Task<IEnumerable<MotorcyclesSearchResponseModel>> GetBySearchCriteriaAsync(MotorcyclesSearchModel searchModel);
+
+    Task EditAsync(MotorcyclesDataModel editModel);
+    Task DeleteAsync(string id);
 }
