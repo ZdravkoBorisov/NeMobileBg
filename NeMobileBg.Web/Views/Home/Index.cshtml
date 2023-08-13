@@ -1,4 +1,5 @@
-﻿@using NeMobileBg.Common.Models.Home;
+﻿@using NeMobileBg.Common.Models.Cars;
+@using NeMobileBg.Common.Models.Home;
 @model HomePageModel;
 
 @{
@@ -16,31 +17,17 @@
     <div class="container">
         <div class="row ">
             <div class="col-4">
-                <button class="toggle-button btn btn-primary btn-block" data-toggle-target="cars">Find Your Car</button>
+                <a asp-controller="Cars" asp-action="Search" class="btn btn-primary">Find Your Car</a>
             </div>
             <div class="col-4 ">
-                <button class="toggle-button btn btn-secondary btn-block" data-toggle-target="trucks">Find Your Truck</button>
+                <a asp-controller="Trucks" asp-action="Search" class="btn btn-primary">Find Your Truck</a>
             </div>
             <div class="col-4 ">
-                <button class="toggle-button btn btn-info btn-block" data-toggle-target="motorcycles">Find Your Motorcycle</button>
+                <a asp-controller="Motorcycles" asp-action="Search" class="btn btn-primary">Find Your Motorcycle</a>
             </div>
         </div>
     </div>
 }
-
-<div class="container">
-    <div class="vehicle-section hidden" id="cars">
-        <partial name="Partials/Cars/_SearchCarsPartial" />
-    </div>
-
-    <div class="vehicle-section hidden" id="trucks">
-        <partial name="Partials/Trucks/_SearchTrucksPartial" />
-    </div>
-
-    <div class="vehicle-section hidden" id="motorcycles">
-        <partial name="Partials/Motorcycles/_SearchMotorcyclesPartial" />
-    </div>
-</div>
 
 <div class="container">
     <h2>Cars</h2>
@@ -52,16 +39,3 @@
     <h2>Motorcycles</h2>
     <partial name="Partials/_VehiclesSectionPartial" model="Model.Motorcycles" />
 </div>
-
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $(".toggle-button").click(function () {
-                const targetId = $(this).data("toggle-target");
-                $(".vehicle-section").removeClass("visible");
-                $("#" + targetId).addClass("visible"); 
-            });
-        });
-    </script>
-}

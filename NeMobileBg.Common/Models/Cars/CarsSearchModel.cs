@@ -10,7 +10,9 @@ namespace NeMobileBg.Common.Models.Cars
 
         public decimal Price { get; set; } = 0;
 
-        public int HorsePower { get; set; } = 0;
+        public int HorsePowerFrom { get; set; } = 0;
+
+        public int HorsePowerTo { get; set; } = 0;
 
         public string Description { get; set; } = default!;
 
@@ -18,9 +20,13 @@ namespace NeMobileBg.Common.Models.Cars
 
         public string Color { get; set; } = default!;
 
-        public string Year { get; set; } = default!;
+        public string FromYear { get; set; } = default!;
 
-        public int Mileage { get; set; } = 0;
+        public string ToYear { get; set; } = default!;
+
+        public int MileageFrom { get; set; } = 0;
+
+        public int MileageTo { get; set; } = 0;
 
         public string EuroStandard { get; set; } = default!;
 

@@ -14,12 +14,3 @@
     .welcome-message p {
         color: lightseagreen; 
     }
-
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-

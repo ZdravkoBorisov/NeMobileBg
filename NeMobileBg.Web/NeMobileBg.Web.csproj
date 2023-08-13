@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Cars\" />
     <Folder Include="Views\Motorcycles\" />
+    <Folder Include="Views\Shared\Partials\Cars\" />
     <Folder Include="Views\Tyres\" />
     <Folder Include="Views\Trucks\" />
   </ItemGroup>

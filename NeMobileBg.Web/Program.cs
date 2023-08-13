@@ -27,6 +27,13 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
 
+builder.Services.AddCors(o => o.AddDefaultPolicy(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
