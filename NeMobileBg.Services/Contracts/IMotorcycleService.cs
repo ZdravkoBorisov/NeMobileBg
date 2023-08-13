@@ -1,4 +1,4 @@
-﻿using NeMobileBg.Common.Models.Cars;
+﻿using NeMobileBg.Common.Models.Motorcycles;
 
 namespace NeMobileBg.Services.Contracts;
 

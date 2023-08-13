@@ -1,8 +1,9 @@
-﻿@using NeMobileBg.Common.Models.Cars;
+﻿@using NeMobileBg.Common.Models.Motorcycles;
+ 
 @model MotorcyclesDataModel
 
 @{
-    ViewData["Title"] = "Edit Car Details";
+    ViewData["Title"] = "Edit Motorcycle Details";
 
     string ConvertByteArrayToBase64(byte[] byteArray)
     {
@@ -17,10 +18,10 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2>Edit Car Details</h2>
+            <h2>Edit Motorcycle Details</h2>
         </div>
         <div class="card-body">
-            <form asp-controller="Cars" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <form asp-controller="Motorcycles" asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="Make">Make:</label>
                     <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" />
@@ -55,24 +56,12 @@
                     <input type="text" id="Category" name="Category" class="form-control" value="@Model.Category" />
                 </div>
                 <div class="form-group">
-                    <label for="Gearbox">Gearbox:</label>
-                    <input type="text" id="Gearbox" name="Gearbox" class="form-control" value="@Model.Gearbox" />
-                </div>
-                <div class="form-group">
                     <label for="Color">Color:</label>
                     <input type="text" id="Color" name="Color" class="form-control" value="@Model.Color" />
                 </div>
                 <div class="form-group">
                     <label for="Condition">Condition:</label>
                     <input type="text" id="Condition" name="Condition" class="form-control" value="@Model.Condition" />
-                </div>
-                <div class="form-group">
-                    <label for="EuroStandard">Euro Standard:</label>
-                    <input type="text" id="EuroStandard" name="EuroStandard" class="form-control" value="@Model.EuroStandard" />
-                </div>
-                <div class="form-group">
-                    <label for="FuelType">Fuel Type:</label>
-                    <input type="text" id="FuelType" name="FuelType" class="form-control" value="@Model.FuelType" />
                 </div>
                 <div class="form-group">
                     <label for="HorsePower">Horsepower:</label>

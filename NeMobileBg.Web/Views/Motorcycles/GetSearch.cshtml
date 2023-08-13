@@ -1,4 +1,4 @@
-﻿@using NeMobileBg.Common.Models.Cars;
+﻿@using NeMobileBg.Common.Models.Motorcycles;
 @model IEnumerable<MotorcyclesSearchModel>;
 
 
@@ -12,9 +12,9 @@
                 <label for="Make">Make:</label>
                 <select class="form-select" id="Make" name="Make">
                     <option value="">Select Make</option>
-                    @foreach (var carData in Model)
+                    @foreach (var motorcycleData in Model)
                     {
-                        <option value="@carData.Make">@carData.Make</option>
+                        <option value="@motorcycleData.Make">@motorcycleData.Make</option>
                     }
                 </select>
             </div>
@@ -22,9 +22,9 @@
                 <label for="Model">Model:</label>
                 <select class="form-select" id="Model" name="Model">
                     <option value="">Select Model</option>
-                    @foreach (var carData in Model)
+                    @foreach (var motorcycleData in Model)
                     {
-                        <option value="@carData.Model">@carData.Model</option>
+                        <option value="@motorcycleData.Model">@motorcycleData.Model</option>
                     }
                 </select>
             </div>
@@ -98,7 +98,7 @@
                     <select class="form-control" id="RequiredLicense" name="RequiredLicense">
                         <option value="A1">A1</option>
                         <option value="A2">A2</option>
-                        <option value="A">A</option> 
+                        <option value="A">A</option>
                     </select>
                 </div>
             </div>
@@ -106,15 +106,15 @@
                 <div class="form-group">
                     <label for="Condition">Condition:</label>
                     <select class="form-control" id="Condition" name="Condition">
-                        <option value="Used">Used</option> 
+                        <option value="Used">Used</option>
                         <option value="New">New</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="FuelType">Fuel Type:</label>
-                    <select class="form-control" id="FuelType" name="FuelType">
+                    <label for="Category">Category:</label>
+                    <select class="form-control" id="Category" name="Category">
                         <option value="Sport">Sport</option>
                         <option value="Naked">Naked</option>
                         <option value="Scooter">Scooter</option>

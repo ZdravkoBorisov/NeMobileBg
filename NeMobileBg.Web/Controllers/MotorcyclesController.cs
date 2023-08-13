@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Common.Models.Cars;
+using NeMobileBg.Common.Models.Motorcycles;
 using NeMobileBg.Data.Models;
 using NeMobileBg.Services.Contracts;
 

@@ -1,9 +1,9 @@
-﻿@using NeMobileBg.Common.Models.Cars;
+﻿@using NeMobileBg.Common.Models.Motorcycles;
 @using System.Security.Claims;
 @model MotorcyclesDataModel
 
 @{
-    ViewData["Title"] = "Car Details";
+    ViewData["Title"] = "Motorcycle Details";
 
     string ConvertByteArrayToBase64(byte[] byteArray)
     {
@@ -21,7 +21,7 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(Model.ImageUrl)" class="card-img-top hoverable-element" alt="Vehicle Image">
+                <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(Model.ImageUrl)" class="card-img-top hoverable-element" alt="Motorcycle Image">
             </div>
             <div class="col-md-8">
 
@@ -37,13 +37,10 @@
                             <p class="card-text"><strong>Year:</strong> @Model.Year</p>
                             <p class="card-text"><strong>Category:</strong> @Model.Category</p>
                             <p class="card-text"><strong>Color:</strong> @Model.Color</p>
-                            <p class="card-text"><strong>Euro Standard:</strong> @Model.EuroStandard</p>
                             <p class="card-text"><strong>Horsepower:</strong> @Model.HorsePower</p>
                         </div>
                         <div class="col-md-6">
-                            <p class="card-text"><strong>Gearbox:</strong> @Model.Gearbox</p>
                             <p class="card-text"><strong>Condition:</strong> @Model.Condition</p>
-                            <p class="card-text"><strong>Fuel Type:</strong> @Model.FuelType</p>
                             <p class="card-text"><strong>Mileage:</strong> @Model.Mileage</p>
 
                         </div>
@@ -52,15 +49,18 @@
                 </div>
             </div>
         </div>
-    </div> <div class="justify-content-end">
-        @if (User.Identity.IsAuthenticated && Model.UserId == ViewBag.UserId)
-        {
-            <a asp-controller="Cars" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info me-2">Edit</a>
-            <a asp-controller="Cars" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
-        }
     </div>
 </div>
+<div class="justify-content-end">
+    @if (User.Identity.IsAuthenticated && Model.UserId == ViewBag.UserId)
+    {
+        <a asp-controller="Motorcycles" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info me-2">Edit</a>
+        <a asp-controller="Motorcycles" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">Delete</a>
+    }
+</div>
 <div class="text-center">
-    <p class="mb-0">"The journey of a thousand miles begins with one turn of the key."</p>
+    <p class="mb-0">
+        "Two wheels, an open road, and the freedom to chase horizons. A motorcycle's song is the anthem of untamed journeys."
+    </p>
     <p class="small">- Unknown</p>
 </div>

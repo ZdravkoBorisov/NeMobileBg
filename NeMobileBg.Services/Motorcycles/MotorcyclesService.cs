@@ -1,4 +1,6 @@
-﻿using NeMobileBg.Common.Models.Cars;
+﻿using Microsoft.AspNetCore.Http;
+using NeMobileBg.Common.Models.Cars;
+using NeMobileBg.Common.Models.Motorcycles;
 using NeMobileBg.Data.Models;
 using NeMobileBg.Data.Repository;
 using NeMobileBg.Services.Contracts;
@@ -14,19 +16,68 @@ public class MotorcyclesService : IMotorcycleService
         this._repository = repository;
     }
 
-    public Task<string> CreateAsync(MotorcyclesDataModel dataModel, string ownerId)
+    public async Task<string> CreateAsync(MotorcyclesDataModel dataModel, string ownerId)
     {
-        throw new NotImplementedException();
+        var motorcycle = new Motorcycle
+        {
+            Id = Guid.NewGuid().ToString(),
+            Make = dataModel.Make,
+            Model = dataModel.Model,
+            Description = dataModel.Description,
+            Price = dataModel.Price,
+            Year = dataModel.Year,
+            Category = dataModel.Category,
+            CreatedOn = DateTime.UtcNow.ToString(),
+            Color = dataModel.Color,
+            Condition = dataModel.Condition,
+            HorsePower = dataModel.HorsePower,
+            Mileage = dataModel.Mileage,
+            UserId = ownerId,
+        };
+
+        if (dataModel.NewImage != null)
+        {
+            var bytes = await this.GetBytes(dataModel.NewImage);
+            motorcycle.ImageUrl = bytes;
+        }
+
+        await this._repository.AddAsync(motorcycle);
+        await this._repository.SaveChangesAsync();
+
+        return motorcycle.Id;
     }
 
-    public Task DeleteAsync(string id)
+    public async Task DeleteAsync(string id)
     {
-        throw new NotImplementedException();
+        var motorcycle = await this._repository.GetByIdAsync<Motorcycle>(id);
+
+        await this._repository.RemoveAsync(motorcycle);
+        await this._repository.SaveChangesAsync();
     }
 
-    public Task EditAsync(MotorcyclesDataModel editModel)
+    public async Task EditAsync(MotorcyclesDataModel editModel)
     {
-        throw new NotImplementedException();
+        var motorcycle = await this._repository.GetByIdAsync<Motorcycle>(editModel.Id);
+
+        if (editModel.NewImage != null)
+        {
+            var imgBytes = await this.GetBytes(editModel.NewImage);
+            motorcycle.ImageUrl = imgBytes;
+        }
+
+        motorcycle.Make = editModel.Make;
+        motorcycle.Model = editModel.Model;
+        motorcycle.Description = editModel.Description;
+        motorcycle.Price = editModel.Price;
+        motorcycle.Year = editModel.Year;
+        motorcycle.Category = editModel.Category;
+        motorcycle.Color = editModel.Color;
+        motorcycle.Condition = editModel.Condition;
+        motorcycle.HorsePower = editModel.HorsePower;
+        motorcycle.Mileage = editModel.Mileage;
+
+        await this._repository.UpdateAsync(motorcycle);
+        await this._repository.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<MotorcyclesSearchResponseModel>> GetBySearchCriteriaAsync(MotorcyclesSearchModel searchModel)
@@ -55,19 +106,9 @@ public class MotorcyclesService : IMotorcycleService
             query = query.Where(x => x.Color == searchModel.Color);
         }
 
-        if (!string.IsNullOrEmpty(searchModel.EuroStandard))
-        {
-            query = query.Where(x => x.EuroStandard == searchModel.EuroStandard);
-        }
-
         if (!string.IsNullOrEmpty(searchModel.Condition))
         {
             query = query.Where(x => x.Condition == searchModel.Condition);
-        }
-
-        if (!string.IsNullOrEmpty(searchModel.FuelType))
-        {
-            query = query.Where(x => x.FuelType == searchModel.FuelType);
         }
 
         if (searchModel.HorsePowerFrom != 0)
@@ -114,7 +155,7 @@ public class MotorcyclesService : IMotorcycleService
         {
             var motorcycleModel = new MotorcyclesSearchResponseModel
             {
-                CarId = motorcycle.Id,
+                MotorcycleId = motorcycle.Id,
                 Make = motorcycle.Make,
                 Model = motorcycle.Model,
                 Description = motorcycle.Description,
@@ -145,8 +186,46 @@ public class MotorcyclesService : IMotorcycleService
         return result;
     }
 
-    public Task<MotorcyclesDataModel> GetDetailsAsync(string id)
+    public async Task<MotorcyclesDataModel> GetDetailsAsync(string id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var motorcycle = await this._repository.GetByIdAsync<Motorcycle>(id);
+            if (motorcycle == null)
+            {
+                return null;
+            }
+            var result = new MotorcyclesDataModel
+            {
+                Id = motorcycle.Id,
+                Make = motorcycle.Make,
+                Model = motorcycle.Model,
+                Description = motorcycle.Description,
+                ImageUrl = motorcycle.ImageUrl,
+                Price = motorcycle.Price,
+                Year = motorcycle.Year,
+                Category = motorcycle.Category,
+                CreatedOn = motorcycle.CreatedOn,
+                Color = motorcycle.Color,
+                Condition = motorcycle.Condition,
+                HorsePower = motorcycle.HorsePower,
+                Mileage = motorcycle.Mileage,
+                UserId = motorcycle.UserId,
+            };
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return null;
+        }
+    }
+
+    private async Task<byte[]> GetBytes(IFormFile formFile)
+    {
+        await using var memoryStream = new MemoryStream();
+        await formFile.CopyToAsync(memoryStream);
+        return memoryStream.ToArray();
     }
 }

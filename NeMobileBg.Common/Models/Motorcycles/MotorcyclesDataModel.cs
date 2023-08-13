@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NeMobileBg.Data.Models;
 
-namespace NeMobileBg.Common.Models.Cars;
+namespace NeMobileBg.Common.Models.Motorcycles;
 
 public class MotorcyclesDataModel : Motorcycle
 {

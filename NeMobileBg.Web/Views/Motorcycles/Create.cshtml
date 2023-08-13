@@ -1,13 +1,14 @@
-﻿@using NeMobileBg.Common.Models.Cars;
+﻿@using NeMobileBg.Common.Models.Motorcycles;
+
 @model MotorcyclesDataModel
 
 @{
-    ViewData["Title"] = "Add Car";
+    ViewData["Title"] = "Add Motorcycle";
 }
 
 <div class="container mt-5">
-    <h2>Add Car</h2>
-    <form asp-controller="Cars" asp-action="Create" method="post" enctype="multipart/form-data">
+    <h2>Add Motorcycle</h2>
+    <form asp-controller="Motorcycles" asp-action="Create" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="Make">Make:</label>
             <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" />
@@ -101,6 +102,6 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Car</button>
+        <button type="submit" class="btn btn-primary">Add Motorcycle</button>
     </form>
 </div>

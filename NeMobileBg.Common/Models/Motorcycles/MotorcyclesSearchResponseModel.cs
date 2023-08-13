@@ -1,8 +1,8 @@
-﻿namespace NeMobileBg.Common.Models.Cars;
+﻿namespace NeMobileBg.Common.Models.Motorcycles;
 
 public class MotorcyclesSearchResponseModel
 {
-    public string CarId { get; set; } = default!;
+    public string MotorcycleId { get; set; } = default!;
 
     public string Make { get; set; } = default!;
 
@@ -19,8 +19,6 @@ public class MotorcyclesSearchResponseModel
     public string Year { get; set; } = default!;
 
     public string Category { get; set; } = default!;
-
-    public string Gearbox { get; set; } = default!;
 
     public string CreatedOn { get; set; } = default!;
 }

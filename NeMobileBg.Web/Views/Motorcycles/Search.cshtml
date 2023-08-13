@@ -1,10 +1,10 @@
-﻿@using NeMobileBg.Common.Models.Cars;
+﻿@using NeMobileBg.Common.Models.Motorcycles;
 @model IEnumerable<MotorcyclesSearchResponseModel>
 
 <link rel="stylesheet" href="~/css/searchresult.css" />
 
 @{
-    ViewData["Title"] = "Cars Search Results";
+    ViewData["Title"] = "Motorcycles Search Results";
 
     string ConvertByteArrayToBase64(byte[] byteArray)
     {
@@ -17,42 +17,38 @@
 }
 <div class="container-fluid">
     <div class="row">
-        @foreach (var car in Model)
+        @foreach (var motorcycle in Model)
         {
             <div class="col-12 mb-4 hoverable-element">
-                @if (User.Identity.IsAuthenticated && car.OwnerId == ViewBag.UserId)
+                @if (User.Identity.IsAuthenticated && motorcycle.OwnerId == ViewBag.UserId)
                 {
                     <div class="d-flex justify-content-between align-items-center">
-                        <a asp-controller="Motorcycles" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-outline-info">Edit</a>
-                        <a asp-controller="Motorcycles" asp-action="Delete" asp-route-id="@car.CarId" class="btn btn-outline-danger">Delete</a>
+                        <a asp-controller="Motorcycles" asp-action="Edit" asp-route-id="@motorcycle.MotorcycleId" class="btn btn-outline-info">Edit</a>
+                        <a asp-controller="Motorcycles" asp-action="Delete" asp-route-id="@motorcycle.MotorcycleId" class="btn btn-outline-danger">Delete</a>
                     </div>
                 }
                 <div class="card card-horizontal">
-                    <a asp-controller="Motorcycles" asp-action="Details" asp-route-id="@car.CarId" class="stretched-link"></a>
+                    <a asp-controller="Motorcycles" asp-action="Details" asp-route-id="@motorcycle.MotorcycleId" class="stretched-link"></a>
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(car.ImageUrl)" class="card-img-top hoverable-element" alt="Vehicle Image">
+                            <img src="data:image/jpeg;base64,@ConvertByteArrayToBase64(motorcycle.ImageUrl)" class="card-img-top hoverable-element" alt="Vehicle Image">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">@($"{car.Make} {car.Model}")</h5>
-                                <p class="card-text">@car.Description</p>
+                                <h5 class="card-title">@($"{motorcycle.Make} {motorcycle.Model}")</h5>
+                                <p class="card-text">@motorcycle.Description</p>
 
                                 <div class="col-md-6">
-                                    <p class="card-text">@($"Year: {car.Year}")</p>
+                                    <p class="card-text">@($"Year: {motorcycle.Year}")</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <p class="card-text">@($"Category: {car.Category}")</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="card-text">@($"Gearbox: {car.Gearbox}")</p>
+                                    <p class="card-text">@($"Category: {motorcycle.Category}")</p>
                                 </div>
                                 <div class="price-top">
-                                    <p class="card-text">@($"Price: {car.Price:C0}")</p>
+                                    <p class="card-text">@($"Price: {motorcycle.Price:C0}")</p>
                                 </div>
-
                                 <div class="created-bottom">
-                                    <p class="card-text small-text">@($"Created On: {car.CreatedOn}")</p>
+                                    <p class="card-text small-text">@($"Created On: {motorcycle.CreatedOn}")</p>
                                 </div>
                             </div>
                         </div>
