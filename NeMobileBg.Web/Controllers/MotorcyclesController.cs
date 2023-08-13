@@ -24,10 +24,10 @@ public class MotorcyclesController : Controller
     {
         ViewBag.UserId = this._userManager.GetUserId(User);
 
-        var carsData = await this._motorcycleService.GetMotorcyclesSearchDataAsync();
-        if (carsData != null)
+        var motorcyclesData = await this._motorcycleService.GetMotorcyclesSearchDataAsync();
+        if (motorcyclesData != null)
         {
-            return this.View("GetSearch", carsData);
+            return this.View("GetSearch", motorcyclesData);
         }
 
         return this.Ok();
@@ -38,10 +38,10 @@ public class MotorcyclesController : Controller
     {
         ViewBag.UserId = this._userManager.GetUserId(User);
 
-        var cars = await this._motorcycleService.GetBySearchCriteriaAsync(searchModel);
-        if (cars != null)
+        var motorcycles = await this._motorcycleService.GetBySearchCriteriaAsync(searchModel);
+        if (motorcycles != null)
         {
-            return this.View(cars);
+            return this.View(motorcycles);
         }
 
         return this.View();
@@ -54,12 +54,12 @@ public class MotorcyclesController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(MotorcyclesDataModel car)
+    public async Task<IActionResult> Create(MotorcyclesDataModel motorcycleData)
     {
         var ownerId = this._userManager.GetUserId(User);
-        var carId = await this._motorcycleService.CreateAsync(car, ownerId);
+        var motorcycleId = await this._motorcycleService.CreateAsync(motorcycleData, ownerId);
 
-        return this.RedirectToAction("Details", new { id = carId });
+        return this.RedirectToAction("Details", new { id = motorcycleId });
 
     }
 
@@ -68,10 +68,10 @@ public class MotorcyclesController : Controller
     {
         ViewBag.UserId = this._userManager.GetUserId(User);
 
-        var car = await this._motorcycleService.GetDetailsAsync(id);
-        if (car != null)
+        var motorcycle = await this._motorcycleService.GetDetailsAsync(id);
+        if (motorcycle != null)
         {
-            return this.View(car);
+            return this.View(motorcycle);
         }
 
         return this.View();
@@ -80,17 +80,17 @@ public class MotorcyclesController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(string id)
     {
-        var car = await this._motorcycleService.GetDetailsAsync(id);
+        var motorcycle = await this._motorcycleService.GetDetailsAsync(id);
 
-        return this.View(car);
+        return this.View(motorcycle);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(MotorcyclesDataModel car)
+    public async Task<IActionResult> Edit(MotorcyclesDataModel motorcyclesData)
     {
 
-        await this._motorcycleService.EditAsync(car);
-        return this.RedirectToAction("Details", new { id = car.Id });
+        await this._motorcycleService.EditAsync(motorcyclesData);
+        return this.RedirectToAction("Details", new { id = motorcyclesData.Id });
     }
 
     [HttpGet]
