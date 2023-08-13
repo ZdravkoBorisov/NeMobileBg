@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NeMobileBg.Common.Models.Motorcycles;
 using NeMobileBg.Data.Models;
@@ -6,6 +7,7 @@ using NeMobileBg.Services.Contracts;
 
 namespace NeMobileBg.Web.Controllers;
 
+[Authorize]
 public class MotorcyclesController : Controller
 {
     private readonly IMotorcycleService _motorcycleService;
