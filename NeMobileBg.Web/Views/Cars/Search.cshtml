@@ -20,7 +20,7 @@
         @foreach (var car in Model)
         {
             <div class="col-12 mb-4 hoverable-element">
-                @if (User.Identity.IsAuthenticated && car.OwnerId == ViewBag.UserId)
+                @if ((User.Identity.IsAuthenticated && car.OwnerId == ViewBag.UserId) || User.IsInRole("admin"))
                 {
                     <div class="d-flex justify-content-between align-items-center">
                         <a asp-controller="Cars" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-outline-info">Edit</a>
