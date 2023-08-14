@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Shared\Partials\Cars\" />
     <Folder Include="Views\Tyres\" />
   </ItemGroup>
 
