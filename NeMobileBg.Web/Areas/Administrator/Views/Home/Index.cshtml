@@ -7,5 +7,18 @@
         This is your administrator area - you can <b>read</b>, <b>create</b>,
         <b>delete</b> and <b>edit</b> vechicles.
    </p>
-  
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="d-grid gap-2 mt-4">
+                <a class="btn btn-primary btn-lg"  asp-action="Dashboard" asp-controller="Cars" asp-area="Administrator">Cars Dashboard</a>
+                <a class="btn btn-primary btn-lg"  asp-action="MyCars" asp-controller="Cars" asp-area="Administrator">My Cars</a>
+                <a class="btn btn-primary btn-lg" asp-action="Dashboard" asp-controller="Motorcycles" asp-area="Administrator">Motorcycles Dashboard</a>
+                <a class="btn btn-primary btn-lg" asp-action="MyMotorcycles" asp-controller="Motorcycles" asp-area="Administrator">My Motorcycles</a>
+                <a class="btn btn-primary btn-lg" asp-action="Dashboard" asp-controller="Users" asp-area="Administrator">Users Dashboard</a>
+            </div>
+        </div>
+    </div>
 </div>

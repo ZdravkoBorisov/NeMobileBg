@@ -1,0 +1,65 @@
+﻿@using NeMobileBg.Common.Models.Motorcycles;
+@model IEnumerable<MotorcyclesDataModel>
+
+@{
+    ViewData["Title"] = "Motorcycles Dashboard";
+    var dataModel = Model.ToList();
+
+}
+
+<div class="container mt-5">
+    <h1>Motorcycles Dashboard</h1>
+    <p>Welcome to the Motorcycles Dashboard. Here you can manage all the motorcycles.</p>
+    <div class="d-grid gap-2 mt-4">
+    </div>
+
+    <div class="mt-4">
+        <table class="table table-dark table-hover table-spacing table-spacing-x">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Database Record</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Category</th>
+                    <th>Color</th>
+                    <th>Condition</th>
+                    <th>Fuel Type</th>
+                    <th>Database Owner Id</th>
+                    <th>Record Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i < dataModel.Count; i++)
+                {
+                    var motorcycle = dataModel[i];
+                    <tr>
+                        <td>@i</td>
+                        <td>@motorcycle.Id</td>
+                        <td>@motorcycle.Make</td>
+                        <td>@motorcycle.Model</td>
+                        <td>@motorcycle.Description</td>
+                        <td>@motorcycle.Price</td>
+                        <td>@motorcycle.Year</td>
+                        <td>@motorcycle.Category</td>
+                        <td>@motorcycle.Color</td>
+                        <td>@motorcycle.Condition</td>
+                        <td>@motorcycle.FuelType</td>
+                        <td>@motorcycle.UserId</td>
+                        <td>
+                            <div class="action-buttons d-flex">
+                                <a asp-area="" asp-controller="Motorcycles" asp-action="Details" asp-route-id="@motorcycle.Id" class="btn btn-outline-primary me-2">Details</a>
+                                <a asp-area="" asp-controller="Motorcycles" asp-action="Edit" asp-route-id="@motorcycle.Id" class="btn btn-outline-info me-2">Edit</a>
+                                <a asp-area="" asp-controller="Motorcycles" asp-action="Delete" asp-route-id="@motorcycle.Id" class="btn btn-outline-danger me-2">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

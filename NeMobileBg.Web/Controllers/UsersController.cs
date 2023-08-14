@@ -23,7 +23,7 @@ public class UsersController : Controller
     public async Task<IActionResult> Cars()
     {
         var userId = this._userManager.GetUserId(User);
-        var cars = await this._usersService.GetCars(userId);
+        var cars = await this._usersService.GetMyCarsAsync(userId);
 
         return this.View(cars);
     }
@@ -32,7 +32,7 @@ public class UsersController : Controller
     public async Task<IActionResult> Motorcycles()
     {
         var userId = this._userManager.GetUserId(User);
-        var motorcycles = await this._usersService.GetMotorcycles(userId);
+        var motorcycles = await this._usersService.GetMyMotorcyclesASync(userId);
 
         return this.View(motorcycles);
     }

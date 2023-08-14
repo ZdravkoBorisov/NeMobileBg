@@ -23,8 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Administrator\Data\" />
-    <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="Views\Shared\Partials\Cars\" />
     <Folder Include="Views\Tyres\" />
   </ItemGroup>

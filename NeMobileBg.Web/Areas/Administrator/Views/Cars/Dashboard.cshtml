@@ -1,0 +1,64 @@
+﻿@using NeMobileBg.Common.Models.Cars;
+@model IEnumerable<CarsDataModel>
+
+@{
+    ViewData["Title"] = "Cars Dashboard";
+    var dataModel = Model.ToList();
+}
+
+<div class="container mt-5">
+    <h1>Cars Dashboard</h1>
+    <p>Welcome to the Cars Dashboard. Here you can manage all the cars.</p>
+    <div class="d-grid gap-2 mt-4">
+    </div>
+
+    <div class="mt-4">
+        <table class="table table-dark table-hover table-spacing table-spacing-x">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Database Record</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Year</th>
+                    <th>Category</th>
+                    <th>Color</th>
+                    <th>Condition</th>
+                    <th>Fuel Type</th>
+                    <th>Database Owner Id</th>
+                    <th>Record Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 1; i < dataModel.Count; i++)
+                {
+                    var carProp = dataModel[i];
+                    <tr>
+                        <td>@i</td>
+                        <td>@carProp.Id</td>
+                        <td>@carProp.Make</td>
+                        <td>@carProp.Model</td>
+                        <td>@carProp.Description</td>
+                        <td>@carProp.Price</td>
+                        <td>@carProp.Year</td>
+                        <td>@carProp.Category</td>
+                        <td>@carProp.Color</td>
+                        <td>@carProp.Condition</td>
+                        <td>@carProp.FuelType</td>
+                        <td>@carProp.UserId</td>
+                        <td>
+                            <div class="action-buttons d-flex">
+                                <a asp-area="" asp-controller="Cars" asp-action="Details" asp-route-id="@carProp.Id" class="btn btn-outline-primary me-2">Details</a>
+                                <a asp-area="" asp-controller="Cars" asp-action="Edit" asp-route-id="@carProp.Id" class="btn btn-outline-info me-2">Edit</a>
+                                <a asp-area="" asp-controller="Cars" asp-action="Delete" asp-route-id="@carProp.Id" class="btn btn-outline-danger me-2">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -9,6 +9,8 @@ using NeMobileBg.Services.Contracts;
 using NeMobileBg.Services.Motorcycles;
 using NeMobileBg.Services.Tyres;
 using NeMobileBg.Services.Users;
+using NeMobileBg.Web.Areas.Administrator.Services;
+using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
@@ -23,6 +25,7 @@ builder.Services.AddScoped<IMotorcycleService, MotorcyclesService>();
 builder.Services.AddScoped<ITyresService, TyresService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
 
