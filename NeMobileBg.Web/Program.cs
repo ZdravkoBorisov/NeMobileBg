@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NeMobileBg.Data;
 using NeMobileBg.Data.Models;
@@ -42,7 +43,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Password.RequiredLength = 2;
     options.Password.RequireLowercase = false;
 
-}).AddEntityFrameworkStores<ApplicationDbContext>();
+}).AddRoles<IdentityRole<string>>()
+.AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
 
@@ -66,9 +68,16 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(config =>
+{
+    config.MapControllerRoute(
+          name: "areas",
+          pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    config.MapControllerRoute(
+        name: "default",
+        pattern: "/{controller=Home}/{action=Index}/{id?}");
+});
 app.MapRazorPages();
 
 app.Run();
