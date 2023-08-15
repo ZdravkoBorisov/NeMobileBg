@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NeMobileBg.Common;
 using NeMobileBg.Common.Models.Cars;
 using NeMobileBg.Common.Models.Motorcycles;
 using NeMobileBg.Data.Models;
@@ -16,29 +17,48 @@ public class AdminService : IAdminService
         this._usersService = usersService;
     }
 
-    public async Task<IEnumerable<CarsDataModel>> GetAllCarsAsync()
+    public async Task<Result<IEnumerable<CarsDataModel>>> GetAllCarsAsync()
     {
-        var cars = await this._usersService.GetAllCarsAsync();
+        var result = await this._usersService.GetAllCarsAsync();
+        if (result.Succeeded)
+        {
+            return result.Data.ToList();
+        }
 
-        return cars;
+        return new List<CarsDataModel>();
     }
 
-    public async Task<IEnumerable<MotorcyclesDataModel>> GetAllMotorcyclesAsync()
+    public async Task<Result<IEnumerable<MotorcyclesDataModel>>> GetAllMotorcyclesAsync()
     {
-        var motorcycles = await this._usersService.GetAllMotorcyclesAsync();
-        return motorcycles;
+        var result = await this._usersService.GetAllMotorcyclesAsync();
+        if (result.Succeeded)
+        {
+            return result.Data.ToList();
+        }
+
+        return new List<MotorcyclesDataModel>();
 
     }
 
-    public Task<IEnumerable<CarsDataModel>> GetMyCarsAsync(string adminId)
+    public async Task<Result<IEnumerable<CarsDataModel>>> GetMyCarsAsync(string adminId)
     {
-        var myCars = this._usersService.GetMyCarsAsync(adminId);
-        return myCars;
+        var result = await this._usersService.GetMyCarsAsync(adminId);
+        if (result.Succeeded)
+        {
+            return result.Data.ToList();
+        }
+
+        return new List<CarsDataModel>();
     }
 
-    public Task<IEnumerable<MotorcyclesDataModel>> GetMyMotorcyclesAsync(string adminId)
+    public async Task<Result<IEnumerable<MotorcyclesDataModel>>> GetMyMotorcyclesAsync(string adminId)
     {
-        var myMotorcycles = this._usersService.GetMyMotorcyclesASync(adminId);
-        return myMotorcycles;
+        var result = await this._usersService.GetMyMotorcyclesASync(adminId);
+        if (result.Succeeded)
+        {
+            return result.Data.ToList();
+        }
+
+        return new List<MotorcyclesDataModel>();
     }
 }

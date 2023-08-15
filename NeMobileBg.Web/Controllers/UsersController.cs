@@ -23,17 +23,25 @@ public class UsersController : Controller
     public async Task<IActionResult> Cars()
     {
         var userId = this._userManager.GetUserId(User);
-        var cars = await this._usersService.GetMyCarsAsync(userId);
+        var result = await this._usersService.GetMyCarsAsync(userId);
+        if (result.Succeeded)
+        {
+            return this.View(result.Data);
+        }
 
-        return this.View(cars);
+        return this.BadRequest(result.Error);
     }
 
     [HttpGet]
     public async Task<IActionResult> Motorcycles()
     {
         var userId = this._userManager.GetUserId(User);
-        var motorcycles = await this._usersService.GetMyMotorcyclesASync(userId);
+        var result = await this._usersService.GetMyMotorcyclesASync(userId);
+        if (result.Succeeded)
+        {
+              return this.View(result.Data);
+        }
 
-        return this.View(motorcycles);
+        return this.BadRequest(result.Error);
     }
 }

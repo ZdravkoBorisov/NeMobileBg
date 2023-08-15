@@ -19,16 +19,24 @@ public class MotorcyclesController : AdminBaseController
 
     public async Task<IActionResult> Dashboard()
     {
-        var motorcycles = await this._adminService.GetAllMotorcyclesAsync();
+        var result = await this._adminService.GetAllMotorcyclesAsync();
+        if (result.Succeeded)
+        {
+            return this.View(result.Data);
+        }
 
-        return this.View(motorcycles);
+        return this.BadRequest(result.Error);
     }
 
     public async Task<IActionResult> MyMotorcycles()
     {
         var userId = this._userManager.GetUserId(User);
-        var motorcycles = await this._adminService.GetMyMotorcyclesAsync(userId);
+        var result = await this._adminService.GetMyMotorcyclesAsync(userId);
+        if (result.Succeeded)
+        {
+            return this.View(result.Data);
+        }
 
-        return this.View(motorcycles);
+        return this.BadRequest(result.Error);
     }
 }

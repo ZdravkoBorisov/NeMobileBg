@@ -99,6 +99,10 @@ public class CarsController : Controller
     public async Task<IActionResult> Delete(string id)
     {
         await this._carsService.Delete(id);
+        if (this.User.IsInRole("admin"))
+        {
+            return RedirectToAction("Index", "Home", new { Area = "Administrator" });
+        }
 
         return this.RedirectToAction("Search");
     }

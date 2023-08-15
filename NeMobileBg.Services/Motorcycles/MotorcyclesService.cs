@@ -33,6 +33,8 @@ public class MotorcyclesService : IMotorcycleService
             HorsePower = dataModel.HorsePower,
             Mileage = dataModel.Mileage,
             UserId = ownerId,
+            FuelType = dataModel.FuelType,
+            Gearbox = dataModel.Gearbox,
         };
 
         if (dataModel.NewImage != null)

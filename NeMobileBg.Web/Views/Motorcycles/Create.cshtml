@@ -8,64 +8,68 @@
 
 <div class="container mt-5">
     <h2>Add Motorcycle</h2>
-    <form asp-controller="Motorcycles" asp-action="Create" method="post" enctype="multipart/form-data">
+    <form asp-controller="Motorcycles" asp-action="Create" method="post" enctype="multipart/form-data" onsubmit="removeCommasBeforeSubmit()">
         <div class="form-group">
             <label for="Make">Make:</label>
-            <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" />
+            <input type="text" id="Make" name="Make" class="form-control" value="@Model.Make" required />
         </div>
         <div class="form-group">
             <label for="Model">Model:</label>
-            <input type="text" id="Model" name="Model" class="form-control" value="@Model.Model" />
+            <input type="text" id="Model" name="Model" class="form-control" value="@Model.Model" required />
         </div>
         <div class="form-group">
             <label for="Description">Description:</label>
-            <textarea id="Description" name="Description" class="form-control">@Model.Description</textarea>
+            <textarea id="Description" name="Description" class="form-control" required>@Model.Description</textarea>
         </div>
         <div class="form-group">
-            <input type="file" id="NewImage" name="NewImage" class="form-control" accept="image/*">
+            <input type="file" id="NewImage" name="NewImage" class="form-control" accept="image/*" required>
         </div>
         <div class="form-group">
             <label for="Price">Price:</label>
-            <input type="number" id="Price" name="Price" class="form-control" value="@Model.Price" />
+            <input type="text" id="Price" name="Price" class="form-control" oninput="formatPriceInput(this)" />
         </div>
         <div class="form-group">
             <label for="Year">Year:</label>
-            <input type="date" id="Year" name="Year" class="form-control" value="@Model.Year" />
+            <input type="date" id="Year" name="Year" class="form-control" value="@Model.Year" required />
         </div>
         <div class="form-group">
             <label for="Category">Category:</label>
             <select id="Category" name="Category" class="form-control">
-                <option value="Sedan">Sedan</option>
-                <option value="Hatch">Hatch</option>
-                <option value="Estate">Estate</option>
-                <option value="Luxury">Luxury</option>
+                <option disabled selected>Select category</option>
+                <option value="Sport">Sport</option>
+                <option value="Naked">Naked</option>
+                <option value="Scooter">Scooter</option>
+                <option value="Motocross">Motocross</option>
             </select>
         </div>
         <div class="form-group">
             <label for="Gearbox">Gearbox:</label>
-            <select id="Gearbox" name="Gearbox" class="form-control">
+            <select id="Gearbox" name="Gearbox" class="form-control" required>
+                <option disabled selected>Select Gearbox type</option>
                 <option value="Automatic">Automatic</option>
                 <option value="Manual">Manual</option>
             </select>
         </div>
         <div class="form-group">
             <label for="Color">Color:</label>
-            <input type="text" id="Color" name="Color" class="form-control" value="@Model.Color" />
+            <input type="text" id="Color" name="Color" class="form-control" value="@Model.Color" required />
         </div>
         <div class="form-group">
             <label for="Condition">Condition:</label>
-            <select id="Condition" name="Condition" class="form-control">
+            <select id="Condition" name="Condition" class="form-control" required>
+                <option disabled selected>Select Condition</option>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
             </select>
         </div>
         <div class="form-group">
             <label for="EuroStandard">Euro Standard:</label>
-            <input type="number" id="EuroStandard" name="EuroStandard" class="form-control" value="@Model.EuroStandard" />
+            <input type="number" id="EuroStandard" name="EuroStandard" class="form-control" value="@Model.EuroStandard" required />
         </div>
         <div class="form-group">
             <label for="FuelType">Fuel Type:</label>
-            <select id="FuelType" name="FuelType" class="form-control">
+            <select id="FuelType" name="FuelType" class="form-control" required>
+                <option disabled selected>Select fuel type</option>
                 <option value="Gasoline">Gasoline</option>
                 <option value="Hybrid">Hybrid</option>
                 <option value="Electric">Electric</option>
@@ -74,34 +78,34 @@
         </div>
         <div class="form-group">
             <label for="HorsePower">Horsepower:</label>
-            <input type="number" id="HorsePower" name="HorsePower" class="form-control" value="@Model.HorsePower" />
+            <input type="number" id="HorsePower" name="HorsePower" class="form-control" value="@Model.HorsePower" required />
         </div>
         <div class="form-group">
             <label for="Mileage">Mileage:</label>
-            <input type="number" id="Mileage" name="Mileage" class="form-control" value="@Model.Mileage" />
-        </div>
-        <div class="form-group">
-            <label for="Convertible">Convertible:</label>
-            <select id="Convertible" name="Convertible" class="form-control">
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="Doors">Doors:</label>
-            <select id="Doors" name="Doors" class="form-control">
-                <option value="2">2</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="Seats">Seats:</label>
-            <select id="Seats" name="Seats" class="form-control">
-                <option value="2">2</option>
-                <option value="4">4</option>
-            </select>
+            <input type="number" id="Mileage" name="Mileage" class="form-control" value="@Model.Mileage" required />
         </div>
 
         <button type="submit" class="btn btn-primary">Add Motorcycle</button>
     </form>
 </div>
+
+
+<script>
+    function formatPriceInput(input) {
+        const numericValue = input.value.replace(/[^0-9]/g, '');
+        const formattedValue = formatNumberWithCommas(numericValue); 
+
+        input.value = formattedValue;
+    }
+
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function removeCommasBeforeSubmit() {
+        const priceInput = document.getElementById('Price');
+        const rawValue = priceInput.value.replace(/[^0-9]/g, ''); 
+
+        priceInput.value = rawValue; 
+    }
+</script>
+

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeMobileBg.Data;
 
@@ -11,9 +12,10 @@ using NeMobileBg.Data;
 namespace NeMobileBg.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230815153446_fixAnnotations")]
+    partial class fixAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,7 +320,7 @@ namespace NeMobileBg.Data.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("NeMobileBg.Data.Models.Motorcycle", b =>
@@ -397,7 +399,7 @@ namespace NeMobileBg.Data.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Motorcycles", (string)null);
+                    b.ToTable("Motorcycles");
                 });
 
             modelBuilder.Entity("NeMobileBg.Data.Models.Tyre", b =>
@@ -452,7 +454,7 @@ namespace NeMobileBg.Data.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Tyres", (string)null);
+                    b.ToTable("Tyres");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

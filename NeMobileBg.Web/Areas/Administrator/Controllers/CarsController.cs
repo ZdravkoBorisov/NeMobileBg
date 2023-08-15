@@ -20,16 +20,25 @@ public class CarsController : AdminBaseController
 
     public async Task<IActionResult> Dashboard()
     {
-        var cars = await this._adminService.GetAllCarsAsync();
-        return this.View(cars);
+        var result = await this._adminService.GetAllCarsAsync();
+        if (result.Succeeded)
+        {
+            return this.View(result.Data);
+        }
+
+        return this.BadRequest(result.Error);
     }
 
     public async Task<IActionResult> MyCars()
     {
         var userId = this._userManager.GetUserId(User);
-        var cars = await this._adminService.GetMyCarsAsync(userId);
+        var result = await this._adminService.GetMyCarsAsync(userId);
 
-        return this.View("Dashboard", cars);
+        if (result.Succeeded)
+        {
+            return this.View("Dashboard", result.Data);
+        }
+
+        return this.BadRequest(result.Error);
     }
-
 }

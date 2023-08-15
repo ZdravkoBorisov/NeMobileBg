@@ -14,58 +14,84 @@ public class Repository : IRepository
 
     public async Task AddAsync<T>(T entity) where T : class
     {
-        await _dbContext.Set<T>().AddAsync(entity);
+        try
+        {
+            await _dbContext.Set<T>().AddAsync(entity);
+        }
+        catch (Exception ex)
+        {
+            //send alert
+            throw;
+        }
     }
 
-    public async Task<T> FindAsync<T>(Expression<Func<T, bool>> predicate)
+    public async Task<IEnumerable<T>> GetAllAsync<T>()
         where T : class
     {
-        return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
+        try
+        {
+            return await _dbContext.Set<T>().ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            //send alert
+            throw;
+        }
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync<T>() 
+    public async Task RemoveAsync<T>(T entity)
         where T : class
     {
-        return await _dbContext.Set<T>().ToListAsync();
-    }
+        try
+        {
 
-    public async Task<IEnumerable<T>> GetAllAsync<T>(Expression<Func<T, bool>> predicate) where T : class
-    {
-        return await _dbContext.Set<T>()
-                                  .Where(predicate)
-                                    .ToListAsync();
-    }
-
-    public async Task RemoveAsync<T>(T entity) 
-        where T : class
-    {
-        await Task.Run(() => _dbContext.Set<T>().Remove(entity));
+            await Task.Run(() => _dbContext.Set<T>().Remove(entity));
+        }
+        catch (Exception ex)
+        {
+            //send alerty
+            throw;
+        }
     }
 
     public async Task SaveChangesAsync()
     {
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            //send alert
+            throw;
+        }
     }
 
     public async Task UpdateAsync<T>(T entity) where T : class
     {
-        await Task.Run(() => _dbContext.Set<T>().Update(entity));
-    }
+        try
+        {
 
-    public async Task<bool> AnyAsync<T>(Expression<Func<T, bool>> predicate) where T : class
-    {
-        return await _dbContext.Set<T>().AnyAsync(predicate);
-    }
-
-
-    public async Task<T> FirstOrDefaultAsync<T>(Expression<Func<T, bool>> predicate) where T : class
-    {
-        return await _dbContext.Set<T>().FirstOrDefaultAsync(predicate);
+            await Task.Run(() => _dbContext.Set<T>().Update(entity));
+        }
+        catch (Exception ex)
+        {
+            //send alert
+            throw;
+        }
     }
 
     public async Task<T> GetByIdAsync<T>(string id) where T : class
     {
-        return await _dbContext.Set<T>().FindAsync(id);
+        try
+        {
+            return await _dbContext.Set<T>().FindAsync(id);
+        }
+        catch (Exception ex)
+        {
+            //send alert
+            throw;
+        }
     }
 
     public async Task<IEnumerable<T>> GetLastCreatedAsync<T>(Expression<Func<T, object>> orderProperty, int count) where T : class
@@ -79,9 +105,9 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //todo
-            return new List<T>();
+            //send alert
+            throw;
         }
-       
+
     }
 }
