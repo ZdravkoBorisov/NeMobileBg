@@ -1,3 +1,5 @@
+using NeMobileBg.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 
@@ -13,6 +15,7 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IAlertsService, AlertsService>();
+builder.Services.AddScoped<ILogging, Logging>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
 

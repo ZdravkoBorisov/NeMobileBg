@@ -19,10 +19,10 @@ public class Repository : IRepository
         try
         {
             await _dbContext.Set<T>().AddAsync(entity);
-            this._alertsService.SendAlert(new ArgumentNullException("test alert service"), "ALERT! Error while adding entity to db");
         }
         catch (Exception ex)
         {
+            this._alertsService.SendAlert(new ArgumentNullException("test alert service"), "ALERT! Error while adding entity to db");
             throw;
         }
     }

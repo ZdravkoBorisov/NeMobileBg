@@ -1,0 +1,1 @@
+﻿global using static NeMobileBg.Logging.Global.Constants;

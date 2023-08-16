@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NeMobileBg.Common\NeMobileBg.Common.csproj" />
     <ProjectReference Include="..\NeMobileBg.Data\NeMobileBg.Data.csproj" />
+    <ProjectReference Include="..\NeMobileBg.Logging\NeMobileBg.Logging.csproj" />
     <ProjectReference Include="..\NeMobileBg.Services\NeMobileBg.Services.csproj" />
   </ItemGroup>
 

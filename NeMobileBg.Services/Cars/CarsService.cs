@@ -1,57 +1,81 @@
-﻿namespace NeMobileBg.Services.Cars;
+﻿using NeMobileBg.Logging;
+
+namespace NeMobileBg.Services.Cars;
 
 public class CarsService : ICarsService
 {
     private readonly IRepository _repository;
+    private readonly ILogging _logging;
 
-    public CarsService(IRepository repository)
+    public CarsService(IRepository repository,
+                       ILogging logging)
     {
         this._repository = repository;
+        this._logging = logging;
     }
 
     public async Task<string> CreateAsync(CarsDataModel dataModel, string ownerId)
     {
-        var car = new Car
+        try
         {
-            Id = Guid.NewGuid().ToString(),
-            Make = dataModel.Make,
-            Model = dataModel.Model,
-            Description = dataModel.Description,
-            Price = dataModel.Price,
-            Year = dataModel.Year,
-            Category = dataModel.Category,
-            Gearbox = dataModel.Gearbox,
-            CreatedOn = DateTime.UtcNow.ToString(),
-            Color = dataModel.Color,
-            Condition = dataModel.Condition,
-            EuroStandard = dataModel.EuroStandard,
-            FuelType = dataModel.FuelType,
-            HorsePower = dataModel.HorsePower,
-            Mileage = dataModel.Mileage,
-            Convertible = dataModel.Convertible,
-            Doors = dataModel.Doors,
-            Seats = dataModel.Seats,
-            UserId = ownerId,
-        };
+            var car = new Car
+            {
+                Id = Guid.NewGuid().ToString(),
+                Make = dataModel.Make,
+                Model = dataModel.Model,
+                Description = dataModel.Description,
+                Price = dataModel.Price,
+                Year = dataModel.Year,
+                Category = dataModel.Category,
+                Gearbox = dataModel.Gearbox,
+                CreatedOn = DateTime.UtcNow.ToString(),
+                Color = dataModel.Color,
+                Condition = dataModel.Condition,
+                EuroStandard = dataModel.EuroStandard,
+                FuelType = dataModel.FuelType,
+                HorsePower = dataModel.HorsePower,
+                Mileage = dataModel.Mileage,
+                Convertible = dataModel.Convertible,
+                Doors = dataModel.Doors,
+                Seats = dataModel.Seats,
+                UserId = ownerId,
+            };
 
-        if (dataModel.NewImage !=null)
-        {
-            var bytes = await this.GetBytes(dataModel.NewImage);
-            car.ImageUrl = bytes;
+            if (dataModel.NewImage != null)
+            {
+                var bytes = await this.GetBytes(dataModel.NewImage);
+                car.ImageUrl = bytes;
+            }
+
+            await this._repository.AddAsync(car);
+            await this._repository.SaveChangesAsync();
+            this._logging.LogDebug($"Car with id: {car.Id} was created.");
+
+            return car.Id;
         }
-
-        await this._repository.AddAsync(car);
-        await this._repository.SaveChangesAsync();
-
-        return car.Id;
+        catch (Exception ex)
+        {
+            this._logging.LogError($"Error while creating a car! {ex}");
+            //send alert
+            throw;
+        }
 
     }
     public async Task Delete(string id)
     {
-        var car = await this._repository.GetByIdAsync<Car>(id);
+        try
+        {
+            var car = await this._repository.GetByIdAsync<Car>(id);
 
-        await this._repository.RemoveAsync(car);
-        await this._repository.SaveChangesAsync();
+            await this._repository.RemoveAsync(car);
+            await this._repository.SaveChangesAsync();
+            this._logging.LogDebug($"Car with id: {id} was deleted.");
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
     }
 
     public async Task<CarsDataModel> GetDetailsAsync(string id)
@@ -86,12 +110,12 @@ public class CarsService : ICarsService
                 Seats = car.Seats,
                 UserId = car.UserId,
             };
-
+            this._logging.LogDebug($"Car with id: {id} was returned.");
             return result;
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex);
+            this._logging.LogError("Error while getting car details! {ex}");
             return null;
         }
 
@@ -99,15 +123,25 @@ public class CarsService : ICarsService
 
     public async Task<IEnumerable<CarsSearchModel>> GetCarsSearchDataAsync()
     {
-        var cars = await this._repository.GetAllAsync<Car>();
-
-        var result = cars.Select(x => new CarsSearchModel
+        try
         {
-            Make = x.Make,
-            Model = x.Model
-        });
+            var cars = await this._repository.GetAllAsync<Car>();
 
-        return result;
+            var result = cars.Select(x => new CarsSearchModel
+            {
+                Make = x.Make,
+                Model = x.Model
+            });
+
+            this._logging.LogDebug("Cars search data was returned.");
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            this._logging.LogError($"Error while getting cars search data! {ex}");
+            throw;
+        }
     }
 
     public async Task<IEnumerable<CarsSearchResponseModel>> GetBySearchCriteriaAsync(CarsSearchModel searchModel)
