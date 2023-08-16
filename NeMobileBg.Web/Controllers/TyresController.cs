@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Web.Controllers;
+﻿namespace NeMobileBg.Web.Controllers;
 
 [Authorize]
 public class TyresController : Controller

@@ -1,0 +1,24 @@
+﻿global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using NeMobileBg.Common;
+global using NeMobileBg.Common.Models.Cars;
+global using NeMobileBg.Common.Models.Motorcycles;
+global using NeMobileBg.Data;
+global using NeMobileBg.Data.Models;
+global using NeMobileBg.Data.Repository;
+global using NeMobileBg.Services;
+global using NeMobileBg.Services.Cars;
+global using NeMobileBg.Services.Contracts;
+global using NeMobileBg.Services.Motorcycles;
+global using NeMobileBg.Services.Tyres;
+global using NeMobileBg.Services.Users;
+global using NeMobileBg.Web.Areas.Administrator.Services;
+global using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
+global using NeMobileBg.Web.Models;
+global using System.Diagnostics;
+
+global using static NeMobileBg.Web.Global.Constants;
+global using static NeMobileBg.Web.Global.Constants.AdminConstants;
+global using static NeMobileBg.Web.Global.Constants.ViewsConstants;

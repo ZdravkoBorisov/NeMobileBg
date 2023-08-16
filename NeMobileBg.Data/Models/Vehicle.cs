@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace NeMobileBg.Data.Models;
+﻿namespace NeMobileBg.Data.Models;
 
 public class Vehicle
 {

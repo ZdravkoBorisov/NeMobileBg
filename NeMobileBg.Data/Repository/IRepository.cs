@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-
+﻿
 namespace NeMobileBg.Data.Repository;
 
 public interface IRepository

@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Common.Models.Motorcycles;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Data.Repository;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Services.Motorcycles;
+﻿namespace NeMobileBg.Services.Motorcycles;
 
 public class MotorcyclesService : IMotorcycleService
 {

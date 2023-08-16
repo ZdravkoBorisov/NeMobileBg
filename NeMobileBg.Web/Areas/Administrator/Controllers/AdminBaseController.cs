@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿namespace NeMobileBg.Web.Areas.Administrator.Controllers;
 
-namespace NeMobileBg.Web.Areas.Administrator.Controllers
+[Area(AdminArea)]
+[Authorize(Roles = AdminRole)]
+public class AdminBaseController : Controller
 {
-    [Area("Administrator")]
-    [Authorize(Roles = "admin")]
-    public class AdminBaseController : Controller
-    {
-    }
 }

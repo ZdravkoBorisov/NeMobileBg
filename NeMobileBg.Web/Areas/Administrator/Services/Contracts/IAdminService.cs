@@ -1,8 +1,4 @@
-﻿using NeMobileBg.Common;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Common.Models.Motorcycles;
-
-namespace NeMobileBg.Web.Areas.Administrator.Services.Contracts;
+﻿namespace NeMobileBg.Web.Areas.Administrator.Services.Contracts;
 
 public interface IAdminService
 {

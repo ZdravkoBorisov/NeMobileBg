@@ -1,13 +1,12 @@
-﻿namespace NeMobileBg.Data.Models
+﻿namespace NeMobileBg.Data.Models;
+
+public class Car : Vehicle
 {
-    public class Car : Vehicle
-    {
-        public bool Convertible { get; set; }
+    public bool Convertible { get; set; }
 
-        public int Seats { get; set; } = default!;
+    public int Seats { get; set; } = default!;
 
-        public string Category { get; set; } = default!;
+    public string Category { get; set; } = default!;
 
-        public int Doors { get; set; }
-    }
+    public int Doors { get; set; }
 }

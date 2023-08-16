@@ -1,5 +1,4 @@
-﻿using NeMobileBg.Common.Models.Motorcycles;
-
+﻿
 namespace NeMobileBg.Services.Contracts;
 
 public interface IMotorcycleService

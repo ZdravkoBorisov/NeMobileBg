@@ -1,6 +1,4 @@
-﻿using NeMobileBg.Common.Models.Cars;
-
-namespace NeMobileBg.Services.Contracts;
+﻿namespace NeMobileBg.Services.Contracts;
 
 public interface ICarsService
 {

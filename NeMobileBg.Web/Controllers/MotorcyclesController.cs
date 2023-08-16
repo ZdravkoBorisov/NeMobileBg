@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Common.Models.Motorcycles;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Web.Controllers;
+﻿namespace NeMobileBg.Web.Controllers;
 
 [Authorize]
 public class MotorcyclesController : Controller
@@ -29,7 +22,7 @@ public class MotorcyclesController : Controller
         var motorcyclesData = await this._motorcycleService.GetMotorcyclesSearchDataAsync();
         if (motorcyclesData != null)
         {
-            return this.View("GetSearch", motorcyclesData);
+            return this.View(GetSearchView, motorcyclesData);
         }
 
         return this.Ok();
@@ -61,7 +54,7 @@ public class MotorcyclesController : Controller
         var ownerId = this._userManager.GetUserId(User);
         var motorcycleId = await this._motorcycleService.CreateAsync(motorcycleData, ownerId);
 
-        return this.RedirectToAction("Details", new { id = motorcycleId });
+        return this.RedirectToAction(DetailsView, new { id = motorcycleId });
 
     }
 
@@ -92,7 +85,7 @@ public class MotorcyclesController : Controller
     {
 
         await this._motorcycleService.EditAsync(motorcyclesData);
-        return this.RedirectToAction("Details", new { id = motorcyclesData.Id });
+        return this.RedirectToAction(DetailsView, new { id = motorcyclesData.Id });
     }
 
     [HttpGet]
@@ -100,6 +93,6 @@ public class MotorcyclesController : Controller
     {
         await this._motorcycleService.DeleteAsync(id);
 
-        return this.RedirectToAction("Search");
+        return this.RedirectToAction(SearchView);
     }
 }

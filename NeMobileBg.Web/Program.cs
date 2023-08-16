@@ -1,17 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using NeMobileBg.Data;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Data.Repository;
-using NeMobileBg.Services;
-using NeMobileBg.Services.Cars;
-using NeMobileBg.Services.Contracts;
-using NeMobileBg.Services.Motorcycles;
-using NeMobileBg.Services.Tyres;
-using NeMobileBg.Services.Users;
-using NeMobileBg.Web.Areas.Administrator.Services;
-using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 

@@ -1,9 +1,4 @@
-﻿using NeMobileBg.Common.Models.Home;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Data.Repository;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Services;
+﻿namespace NeMobileBg.Services;
 
 public class HomePageService : IHomePageService
 {

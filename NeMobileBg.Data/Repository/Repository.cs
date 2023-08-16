@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-
-namespace NeMobileBg.Data.Repository;
+﻿namespace NeMobileBg.Data.Repository;
 
 public class Repository : IRepository
 {

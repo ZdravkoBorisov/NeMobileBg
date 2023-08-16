@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-using NeMobileBg.Web.Models;
-using System.Diagnostics;
-
-namespace NeMobileBg.Web.Controllers;
+﻿namespace NeMobileBg.Web.Controllers;
 
 public class HomeController : Controller
 {
@@ -22,9 +15,9 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
 
-        if (this.User.IsInRole("admin"))
+        if (this.User.IsInRole(AdminRole))
         {
-            return RedirectToAction("Index", "Home", new { Area = "Administrator" });
+            return RedirectToAction(IndexView, HomeView, new { Area = AdminArea });
         }
         var vehicles = await this._homePageService.GetHomePageVehicles();
 

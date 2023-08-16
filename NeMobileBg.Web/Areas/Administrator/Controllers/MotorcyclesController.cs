@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
-
-namespace NeMobileBg.Web.Areas.Administrator.Controllers;
+﻿namespace NeMobileBg.Web.Areas.Administrator.Controllers;
 
 public class MotorcyclesController : AdminBaseController
 {
@@ -34,7 +29,7 @@ public class MotorcyclesController : AdminBaseController
         var result = await this._adminService.GetMyMotorcyclesAsync(userId);
         if (result.Succeeded)
         {
-            return this.View(result.Data);
+            return this.View(ViewsConstants.DashboardView, result.Data);
         }
 
         return this.BadRequest(result.Error);

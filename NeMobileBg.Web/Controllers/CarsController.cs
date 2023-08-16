@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Web.Controllers;
+﻿namespace NeMobileBg.Web.Controllers;
 
 [Authorize]
 public class CarsController : Controller
@@ -29,7 +22,7 @@ public class CarsController : Controller
         var carsData = await this._carsService.GetCarsSearchDataAsync();
         if (carsData != null)
         {
-            return this.View("GetSearch", carsData);
+            return this.View(GetSearchView, carsData);
         }
 
         return this.Ok();
@@ -61,7 +54,7 @@ public class CarsController : Controller
         var ownerId = this._userManager.GetUserId(User);
         var carId = await this._carsService.CreateAsync(car, ownerId);
 
-        return this.RedirectToAction("Details", new { id = carId });
+        return this.RedirectToAction(ViewsConstants.DetailsView, new { id = carId });
 
     }
 
@@ -92,19 +85,19 @@ public class CarsController : Controller
     {
 
         await this._carsService.EditAsync(car);
-        return this.RedirectToAction("Details", new { id = car.Id });
+        return this.RedirectToAction(DetailsView, new { id = car.Id });
     }
 
     [HttpGet]
     public async Task<IActionResult> Delete(string id)
     {
         await this._carsService.Delete(id);
-        if (this.User.IsInRole("admin"))
+        if (this.User.IsInRole(AdminRole))
         {
-            return RedirectToAction("Index", "Home", new { Area = "Administrator" });
+            return RedirectToAction(IndexView, HomeView, new { Area = AdminArea });
         }
 
-        return this.RedirectToAction("Search");
+        return this.RedirectToAction(SearchView);
     }
 
 }

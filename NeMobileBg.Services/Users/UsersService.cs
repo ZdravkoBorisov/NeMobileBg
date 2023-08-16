@@ -1,11 +1,4 @@
-﻿using NeMobileBg.Common;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Common.Models.Motorcycles;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Data.Repository;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Services.Users;
+﻿namespace NeMobileBg.Services.Users;
 
 public class UsersService : IUsersService
 {

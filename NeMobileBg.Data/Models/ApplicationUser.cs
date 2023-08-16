@@ -1,24 +1,20 @@
-﻿
-using Microsoft.AspNetCore.Identity;
+﻿namespace NeMobileBg.Data.Models;
 
-namespace NeMobileBg.Data.Models
+public class ApplicationUser : IdentityUser
 {
-    public class ApplicationUser : IdentityUser
+    public ApplicationUser() 
     {
-        public ApplicationUser() 
-        {
-            base.Id = Guid.NewGuid().ToString(); 
-        }
-        public string? FirstName { get; set; } = default!;
-
-        public string? LastName { get; set; } = default!;
-
-        public string? Address { get; set; }
-
-        public string? City { get; set; } = default!;
-
-        public IEnumerable<Car> Cars { get; set; } = new List<Car>();
-
-        public IEnumerable<Motorcycle> Motorcycles { get; set; } = new List<Motorcycle>();
+        base.Id = Guid.NewGuid().ToString(); 
     }
+    public string? FirstName { get; set; } = default!;
+
+    public string? LastName { get; set; } = default!;
+
+    public string? Address { get; set; }
+
+    public string? City { get; set; } = default!;
+
+    public IEnumerable<Car> Cars { get; set; } = new List<Car>();
+
+    public IEnumerable<Motorcycle> Motorcycles { get; set; } = new List<Motorcycle>();
 }

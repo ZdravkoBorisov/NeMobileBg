@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace NeMobileBg.Data.Models;
+﻿namespace NeMobileBg.Data.Models;
 
 public class Tyre
 {

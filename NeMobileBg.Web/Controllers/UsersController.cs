@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Web.Controllers;
+﻿namespace NeMobileBg.Web.Controllers;
 
 [Authorize]
 public class UsersController : Controller

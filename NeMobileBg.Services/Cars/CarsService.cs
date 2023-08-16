@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Data.Repository;
-using NeMobileBg.Services.Contracts;
-
-namespace NeMobileBg.Services.Cars;
+﻿namespace NeMobileBg.Services.Cars;
 
 public class CarsService : ICarsService
 {
@@ -184,8 +178,7 @@ public class CarsService : ICarsService
 
         if (!string.IsNullOrEmpty(searchModel.FromYear))
         {
-            DateTime fromYearDate;
-            if (DateTime.TryParse(searchModel.FromYear, out fromYearDate))
+            if (DateTime.TryParse(searchModel.FromYear, out DateTime fromYearDate))
             {
                 query = query.Where(x => DateTime.Parse(x.Year) > fromYearDate);
             }
@@ -193,8 +186,7 @@ public class CarsService : ICarsService
 
         if (!string.IsNullOrEmpty(searchModel.ToYear))
         {
-            DateTime toYearDate;
-            if (DateTime.TryParse(searchModel.ToYear, out toYearDate))
+            if (DateTime.TryParse(searchModel.ToYear, out DateTime toYearDate))
             {
                 query = query.Where(x => DateTime.Parse(x.Year) < toYearDate);
             }

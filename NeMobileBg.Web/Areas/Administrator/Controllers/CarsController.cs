@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
-
-namespace NeMobileBg.Web.Areas.Administrator.Controllers;
+﻿namespace NeMobileBg.Web.Areas.Administrator.Controllers;
 
 public class CarsController : AdminBaseController
 {
@@ -36,7 +30,7 @@ public class CarsController : AdminBaseController
 
         if (result.Succeeded)
         {
-            return this.View("Dashboard", result.Data);
+            return this.View(ViewsConstants.DashboardView, result.Data);
         }
 
         return this.BadRequest(result.Error);

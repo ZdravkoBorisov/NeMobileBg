@@ -1,12 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using NeMobileBg.Common;
-using NeMobileBg.Common.Models.Cars;
-using NeMobileBg.Common.Models.Motorcycles;
-using NeMobileBg.Data.Models;
-using NeMobileBg.Services.Contracts;
-using NeMobileBg.Web.Areas.Administrator.Services.Contracts;
-
-namespace NeMobileBg.Web.Areas.Administrator.Services;
+﻿namespace NeMobileBg.Web.Areas.Administrator.Services;
 
 public class AdminService : IAdminService
 {
