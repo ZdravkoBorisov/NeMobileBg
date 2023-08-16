@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.18" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NeMobileBg.Alerting\NeMobileBg.Alerting.csproj" />
+  </ItemGroup>
+
 </Project>

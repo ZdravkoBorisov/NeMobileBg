@@ -1,12 +1,17 @@
-﻿namespace NeMobileBg.Data.Repository;
+﻿using NeMobileBg.Services.Contracts;
+
+namespace NeMobileBg.Data.Repository;
 
 public class Repository : IRepository
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly IAlertsService _alertsService;
 
-    public Repository(ApplicationDbContext dbContext)
+    public Repository(ApplicationDbContext dbContext,
+                      IAlertsService alertsService)
     {
         _dbContext = dbContext;
+        this._alertsService = alertsService;
     }
 
     public async Task AddAsync<T>(T entity) where T : class
@@ -14,10 +19,10 @@ public class Repository : IRepository
         try
         {
             await _dbContext.Set<T>().AddAsync(entity);
+            this._alertsService.SendAlert(new ArgumentNullException("test alert service"), "ALERT! Error while adding entity to db");
         }
         catch (Exception ex)
         {
-            //send alert
             throw;
         }
     }
@@ -31,7 +36,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alert
+            this._alertsService.SendAlert(ex, "ALERT! Error while getting all entities from db");
             throw;
         }
     }
@@ -46,7 +51,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alerty
+            this._alertsService.SendAlert(ex, "Error while removing entity from db");
             throw;
         }
     }
@@ -59,7 +64,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alert
+            this._alertsService.SendAlert(ex, "Error while saving changes to db");
             throw;
         }
     }
@@ -73,7 +78,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alert
+            this._alertsService.SendAlert(ex, "Error while updating entity in db");
             throw;
         }
     }
@@ -86,7 +91,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alert
+            this._alertsService.SendAlert(ex, "Error while getting entity by id from db");
             throw;
         }
     }
@@ -102,7 +107,7 @@ public class Repository : IRepository
         }
         catch (Exception ex)
         {
-            //send alert
+            this._alertsService.SendAlert(ex, "Error while getting last created entities from db");
             throw;
         }
 

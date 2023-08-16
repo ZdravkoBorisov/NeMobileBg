@@ -12,6 +12,7 @@ builder.Services.AddScoped<ITyresService, TyresService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IAlertsService, AlertsService>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IHomePageService, HomePageService>();
 
